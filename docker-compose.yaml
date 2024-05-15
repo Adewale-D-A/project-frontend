@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: fingerprint-project-production
+    image: fingerprint-project-prod:v1.1.0
+    build:
+      context: .
+      target: production

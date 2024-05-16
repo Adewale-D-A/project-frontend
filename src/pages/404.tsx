@@ -1,8 +1,14 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export default function PageNotFound() {
   return (
-    <div className="w-full h-screen flex justify-center flex-col gap-5 items-center">
+    <motion.div
+      initial={{ x: -100 }}
+      animate={{ x: 0 }}
+      transition={{ duration: 0.2 }}
+      className="w-full h-screen flex justify-center flex-col gap-5 items-center"
+    >
       <div className=" flex items-center flex-col gap-5">
         <div className=" flex items-center gap-3">
           <h1 className=" text-5xl font-bold">404</h1>
@@ -12,7 +18,7 @@ export default function PageNotFound() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-10 h-10 text-yellow-600"
+            className="w-10 h-10 text-gray-400"
           >
             <path
               strokeLinecap="round"
@@ -23,7 +29,7 @@ export default function PageNotFound() {
         </div>
         <Link
           to={"/"}
-          className="w-fit flex justify-center button-gradient text-white  gap-3 p-3 px-6 rounded-lg hover:bg-transparent hover:border hover:border-primary-500 transition-all hover:text-primary-500"
+          className="w-fit flex justify-center button-gradient text-gray-400  gap-3 p-3 px-6 rounded-lg hover:bg-transparent border border-gray-400 hover:border-primary-500 transition-all hover:text-primary-500"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,6 +49,6 @@ export default function PageNotFound() {
           <span>Back</span>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 }

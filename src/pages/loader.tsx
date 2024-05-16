@@ -5,9 +5,9 @@ export default function Loader({
   setFailed,
   tryAgain,
 }: {
-  failed?: boolean,
-  setFailed?: Function,
-  tryAgain?: Function,
+  failed?: boolean;
+  setFailed?: Function;
+  tryAgain?: Function;
 }) {
   const retryRequest = useCallback(() => {
     if (setFailed && tryAgain) {
@@ -22,7 +22,7 @@ export default function Loader({
           <div className="flex items-center justify-center">
             <img
               src={"/logo192.png"}
-              className=" w-16 jamb-loader-img"
+              className=" w-16 logo-loader-img"
               alt="Jamb logo"
             />
           </div>
@@ -41,7 +41,7 @@ export default function Loader({
         <div className="flex items-center justify-center">
           <img
             src={"/logo192.png"}
-            className=" w-16 jamb-loader-img"
+            className=" w-16 logo-loader-img"
             alt="Jamb logo"
           />
         </div>

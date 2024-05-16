@@ -6,7 +6,51 @@
   font-family: "open_sans";
   src: url("./assets/font/OpenSans-Regular.ttf");
 }
+
 body {
   color: #10476d;
   font-family: "open_sans";
+  background-color: rgb(0, 0, 0, 0.1);
+}
+
+.noise-bg {
+  background-image: url("/public/noise-10.png");
+}
+.fingerprprint-bg {
+  background-image: url("/public/fingerprint_bg_three.jpg");
+}
+
+.one-bg {
+  background-image: url("/public/1.svg");
+}
+.two-bg {
+  background-image: url("/public/2.svg");
+}
+.three-bg {
+  background-image: url("/public/3.svg");
+}
+.footer-bg {
+  background-image: url("/public/footer_pattern.svg");
+}
+.webkit-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
+.logo-loader-img {
+  animation: image_zoom 2s linear 0s infinite forwards;
+  transition: all;
+}
+
+.backdrop-bg-filter {
+  background-color: rgba(0, 79, 46, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 5px;
+}
+
+.text-shadow {
+  text-shadow: 0px 4px 4px rgba(30, 71, 124, 0.5);
+}
+.calc-height {
+  height: calc(100vh - 150px);
 }

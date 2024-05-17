@@ -15,7 +15,7 @@ export default function Home() {
         <section className=" w-full">
           <div className="w-full h-screen fingerprprint-bg bg-cover bg-no-repeat bg-center bg-fixed flex items-center justify-center">
             <div className=" max-w-screen-xl w-full px-5 md:px-10 flex flex-col items-end justify-end text-white">
-              <h1 className=" text-7xl font-bold  max-w-md text-shadow">
+              <h1 className=" text-5xl md:text-7xl font-bold  max-w-md text-shadow">
                 Fingerprint Attendance Management System
               </h1>
               <p>-a final year project</p>

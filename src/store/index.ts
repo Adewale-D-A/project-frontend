@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import snackbar from "./app_functions/snackbar";
+import navMenuFunctions from "./app_functions/navMenuFunctions";
 
 export const projectStore = () => {
   return configureStore({
     reducer: {
       //app functionality
       snackbar: snackbar,
+      menuFunctions: navMenuFunctions,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

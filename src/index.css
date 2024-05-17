@@ -32,6 +32,18 @@ body {
 .footer-bg {
   background-image: url("/public/footer_pattern.svg");
 }
+
+.bg-semi-circle-left {
+  background-image: url(/public/semiCircle2.png);
+}
+
+.bg-semi-circle-right {
+  background-image: url(/public/semiCircle2.png);
+}
+
+.bg-gradient {
+  background: linear-gradient(110.23deg, #10476d 18.12%, #88bfe5 51.44%);
+}
 .webkit-sticky {
   position: -webkit-sticky;
   position: sticky;

@@ -11,6 +11,9 @@ module.exports = {
         primary: {
           500: "#10476D",
         },
+        secondary: {
+          500: "#060712",
+        },
       },
     },
   },

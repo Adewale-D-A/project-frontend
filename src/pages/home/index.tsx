@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 
 import MetaTags from "../../components/metaTags";
+import StoreBadge from "../../components/app-download/storeBadge";
 
 export default function Home() {
   return (
@@ -13,12 +14,15 @@ export default function Home() {
         className=" w-full flex flex-col gap-10"
       >
         <section className=" w-full">
-          <div className="w-full h-screen fingerprprint-bg bg-cover bg-no-repeat bg-center bg-fixed flex items-center justify-center">
+          <div className="w-full h-screen fingerprint-bg bg-cover bg-no-repeat bg-center bg-fixed flex items-center justify-center">
             <div className=" max-w-screen-xl w-full px-5 md:px-10 flex flex-col items-end justify-end text-white">
               <h1 className=" text-5xl md:text-7xl font-bold  max-w-md text-shadow">
                 Fingerprint Attendance Management System
               </h1>
               <p>-a final year project</p>
+              <div className=" mt-3">
+                <StoreBadge />
+              </div>
             </div>
           </div>
         </section>
@@ -27,9 +31,9 @@ export default function Home() {
             <div className=" text-center flex justify-center items-center flex-col w-full mb-16">
               <h2 className="font-semibold text-4xl my-3">Problem statement</h2>
               <p className="max-w-2xl font-light">
-                Our goal is to reduce the manual process of attendnace and to
-                introduce automation into our Universities practices to foster
-                productivity
+                The use of manual attendance device is tedious to compile and
+                analyze, prone to impersonations and susceptible to human
+                errors.
               </p>
             </div>
             <div className="flex flex-col md:flex-row justify-between gap-10 items-stretch flex-wrap">

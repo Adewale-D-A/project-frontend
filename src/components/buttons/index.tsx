@@ -18,7 +18,7 @@ export const primaryBtnStyle2 = {
 interface Props {
   label: string;
   type?: string;
-  clickHandler?: Function;
+  clickHandler?: any;
   isLoading?: boolean;
   disabled?: boolean;
   startIcon?: ReactNode;

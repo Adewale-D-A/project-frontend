@@ -4,41 +4,47 @@
     "position": "Software",
     "shortBio": "Electrical and Electronics Final Year Student",
     "longBio": "Special interest in software development, artificial intelligence and general fields in improving the efficiency of human lives",
-    "imgSrc": "/adewale.PNG"
+    "imgSrc": "/adewale.PNG",
+    "linkedIn": "https://www.linkedin.com/in/adewale-d-azeez/"
   },
   {
     "name": "Rufai Mubarak",
     "position": "Hardware",
     "shortBio": "Electrical and Electronics Final Year Student",
     "longBio": "",
-    "imgSrc": "/portrait_placeholder.png"
+    "imgSrc": "/portrait_placeholder.png",
+    "linkedIn": "#"
   },
   {
     "name": "Mustapha Ibrahim",
     "position": "Software",
     "shortBio": "Electrical and Electronics Final Year Student",
     "longBio": "",
-    "imgSrc": "/portrait_placeholder.png"
+    "imgSrc": "/portrait_placeholder.png",
+    "linkedIn": "#"
   },
   {
     "name": "Akinsika Ayooluwa",
     "position": "Data Collection",
     "shortBio": "Electrical and Electronics Final Year Student",
     "longBio": "",
-    "imgSrc": "/portrait_placeholder.png"
+    "imgSrc": "/portrait_placeholder.png",
+    "linkedIn": "#"
   },
   {
     "name": "Adeseye Abdulrasheed",
     "position": "Hardware",
     "shortBio": "Electrical and Electronics Final Year Student",
     "longBio": "",
-    "imgSrc": "/portrait_placeholder.png"
+    "imgSrc": "/portrait_placeholder.png",
+    "linkedIn": "#"
   },
   {
     "name": "Usman Olamilekan",
     "position": "Data Collection",
     "shortBio": "Electrical and Electronics Final Year Student",
     "longBio": "",
-    "imgSrc": "/portrait_placeholder.png"
+    "imgSrc": "/portrait_placeholder.png",
+    "linkedIn": "#"
   }
 ]

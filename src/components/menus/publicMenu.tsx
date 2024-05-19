@@ -38,7 +38,7 @@ const NavBar = () => {
           {navItems.map((menus) => {
             return (
               <div key={menus?.label} className="group z-50 relative flex ">
-                <Link to={menus?.url} className="">
+                <Link to={menus?.url} className=" text-shadow-white">
                   {menus?.label}
                 </Link>
                 {menus?.hasSubMenu && (
@@ -223,16 +223,7 @@ const NavBar = () => {
                     to={menus?.url}
                     id="icon-menu"
                   >
-                    {menus?.iconUrl ? (
-                      <img
-                        src={menus?.iconUrl}
-                        alt="home"
-                        title="home"
-                        className=" w-8 h-auto"
-                      />
-                    ) : (
-                      menus?.icon
-                    )}
+                    {menus?.icon}
                     <span>{menus?.label}</span>{" "}
                     {menus?.hasSubMenu && (
                       <div>
@@ -279,16 +270,7 @@ const NavBar = () => {
                               to={subMenu?.url}
                               id="icon-menu"
                             >
-                              {subMenu?.iconUrl ? (
-                                <img
-                                  src={subMenu?.iconUrl}
-                                  alt={subMenu?.label}
-                                  title={subMenu?.label}
-                                  className=" w-8 h-auto"
-                                />
-                              ) : (
-                                subMenu?.icon
-                              )}
+                              {subMenu?.icon}
                               <span>{subMenu?.label}</span>{" "}
                             </Link>
                           );

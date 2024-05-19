@@ -1,3 +1,9 @@
+##### 05.19.2024
+
+> Problem statement text correction
+> Contact us form input and direct email functionality
+> The-team's page linked in addition and Prof's profile image update
+
 ##### 05.17.2024
 
 > About us page completion

@@ -35,7 +35,9 @@ export default function Team() {
                   position: "Project Supervisor",
                   shortBio: "",
                   longBio: "",
-                  imgSrc: "/portrait_placeholder.png",
+                  imgSrc: "/Prof_Nazmat_1.jpg",
+                  linkedIn:
+                    "https://www.linkedin.com/in/nazmat-surajudeen-bakinde-58728226/",
                 },
               ].map?.((item, index: number) => {
                 return <TeamBioCard key={item?.name} item={item} />;

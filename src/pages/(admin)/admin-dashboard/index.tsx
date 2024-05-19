@@ -126,7 +126,7 @@ export default function AdminDashboard() {
                       <div>
                         <div className=" flex items-center justify-between mb-5">
                           <span className=" text-gray-800">{item?.label}</span>{" "}
-                          <span className=" p-2 bg-primary_green-500/40 text-primary-500 rounded-md">
+                          <span className=" p-2 bg-primary-500/40 text-primary-500 rounded-md">
                             {item?.icon}
                           </span>
                         </div>

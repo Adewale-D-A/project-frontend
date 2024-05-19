@@ -1,7 +1,7 @@
 export const input_style_default = {
   ".MuiOutlinedInput-notchedOutline": {
     borderColor: "#10476D",
-    borderWidth: "2px",
+    borderWidth: "1px",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
     borderColor: "#10476D",
@@ -19,7 +19,7 @@ export const input_style_default = {
     color: "#10476D",
     "& fieldset": {
       borderColor: "#10476D",
-      borderWidth: "2px",
+      borderWidth: "1px",
     },
     "&:hover fieldset": {
       borderColor: "#37739e",

@@ -25,7 +25,7 @@ export default function Team() {
       <section className=" w-full flex flex-col items-center">
         <div className="w-full max-w-screen-xl px-5 md:px-10">
           <h3 className=" text-2xl md:text-4xl font-bold max-w-4xl">
-            the team
+            The team
           </h3>
           <div className=" w-full flex items-center justify-center">
             <div className="w-full max-w-md shadow-md rounded-md">

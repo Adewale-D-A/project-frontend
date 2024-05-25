@@ -1,3 +1,8 @@
+##### 05.25.2024
+
+> Scroll to top funcitonality for public facing UIs
+> Hardware mode endpoint integration
+
 ##### 05.19.2024
 
 > Problem statement text correction

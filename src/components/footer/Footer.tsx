@@ -33,8 +33,7 @@ const Footer = () => {
                   {[
                     { label: "About", url: "/about-our-system" },
                     { label: "User Guide", url: "/user-guide" },
-                    { label: "The Team", url: "/the-team" },
-                    { label: "Contact", url: "/contact-us" },
+                    { label: "The Team", url: "/team" },
                   ].map((item, index) => {
                     return (
                       <Link to={item.url} key={index}>
@@ -48,7 +47,7 @@ const Footer = () => {
                 <span className="font-bold text-lg">Support</span>
                 <div className="flex flex-col gap-5">
                   {[
-                    { label: "Contact", url: "#" },
+                    { label: "Contact", url: "/contact-us" },
                     { label: "Feedback", url: "#" },
                     { label: "Features", url: "#" },
                     // { label: "Mentors", url: "#" },

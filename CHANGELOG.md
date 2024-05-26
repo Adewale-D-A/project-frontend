@@ -1,5 +1,6 @@
 ##### 05.26.2024
 
+> Course error fix testing
 > Authentication logic definition
 > Student's login api integration
 > Student's registration api integration

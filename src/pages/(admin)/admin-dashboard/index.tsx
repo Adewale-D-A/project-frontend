@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 
 import LinkButtonMain from "../../../components/buttons/link_button_main";
+import { useAppSelector } from "../../../store/hooks";
 
 export default function AdminDashboard() {
+  const { user } = useAppSelector((state) => state?.userAuthentication?.value);
+
   return (
     <motion.div
       initial={{ x: -100 }}
@@ -26,7 +29,7 @@ export default function AdminDashboard() {
                   <h3 className=" text-2xl md:text-3xl font-semibold">
                     Super Admin
                   </h3>
-                  <p>adewale.d.a@outlook.com</p>
+                  <p>{user?.email}</p>
                 </div>
                 <LinkButtonMain
                   url="/admin-student-registration"
@@ -54,11 +57,11 @@ export default function AdminDashboard() {
                         />
                       </svg>
                     ),
-                    value: 5,
+                    value: 0,
                     subSection: [
                       {
                         id: 1.1,
-                        value: 2,
+                        value: 0,
                         label: "active",
                       },
                     ],
@@ -81,11 +84,11 @@ export default function AdminDashboard() {
                         <path d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
                       </svg>
                     ),
-                    value: 200,
+                    value: 0,
                     subSection: [
                       {
                         id: 2.1,
-                        value: 800,
+                        value: 0,
                         label: "available",
                       },
                     ],
@@ -103,7 +106,7 @@ export default function AdminDashboard() {
                         <path d="M18.75 12.75h1.5a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM12 6a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 6ZM12 18a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 18ZM3.75 6.75h1.5a.75.75 0 1 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM5.25 18.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 0 1.5ZM3 12a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 3 12ZM9 3.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM12.75 12a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0ZM9 15.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
                       </svg>
                     ),
-                    value: 2,
+                    value: 0,
                     subSection: [
                       {
                         id: 3.1,

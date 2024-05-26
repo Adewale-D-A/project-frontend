@@ -40,11 +40,9 @@ export default function HardwareSettings() {
         // const modeSet = data?.mode_id
         // console.log({ response });
         dispatch(openSnackbar({ message: message, isError: false }));
-      } catch (error) {
-        console.log({ error });
-        dispatch(
-          openSnackbar({ message: "mode failed to update", isError: true })
-        );
+      } catch (error: any) {
+        const errorMessage = error?.response?.data?.message;
+        dispatch(openSnackbar({ message: errorMessage, isError: true }));
       } finally {
         setSubmittingMode(false);
       }

@@ -4,6 +4,7 @@ import navMenuFunctions from "./app_functions/navMenuFunctions";
 
 //user
 import userAuthentication from "./user/auth";
+import myVerificationHistory from "./user/allVerificationHistory";
 
 export const projectStore = () => {
   return configureStore({
@@ -14,6 +15,7 @@ export const projectStore = () => {
 
       //user
       userAuthentication: userAuthentication,
+      myVerificationHistory: myVerificationHistory,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

@@ -7,6 +7,15 @@ export const userAuthentication = createSlice({
       status: false,
       access_token: "",
       refresh_token: "",
+      user: {
+        firstname: "",
+        lastname: "",
+        matric_number: "",
+        username: "",
+        email: "",
+        hardware_user_id: "",
+        role: "",
+      },
     },
   },
   reducers: {
@@ -14,11 +23,21 @@ export const userAuthentication = createSlice({
       state.value.status = true;
       state.value.access_token = action?.payload?.access_token;
       state.value.refresh_token = action?.payload?.refresh_token;
+      state.value.user = action?.payload?.user;
     },
     clearAuthentication: (state) => {
       state.value.status = false;
       state.value.access_token = "";
       state.value.refresh_token = "";
+      state.value.user = {
+        firstname: "",
+        lastname: "",
+        matric_number: "",
+        username: "",
+        email: "",
+        hardware_user_id: "",
+        role: "",
+      };
     },
   },
 });

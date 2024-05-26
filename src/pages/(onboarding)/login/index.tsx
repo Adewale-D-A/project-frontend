@@ -6,8 +6,11 @@ import TextInput from "../../../components/inputs/text";
 import PasswordInput from "../../../components/inputs/password";
 import { ClickButtonMain } from "../../../components/buttons";
 import { Link, useNavigate } from "react-router-dom";
+import useAxios from "../../../services/base/axios/useAxios";
+import { updateAuthentication } from "../../../store/user/auth";
 
 export default function Login() {
+  const axios = useAxios();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -21,23 +24,23 @@ export default function Login() {
       e.preventDefault();
       setIsSubmitting(true);
       try {
-        const usertype = email.split("@")[0];
-        if (
-          usertype === "admin" ||
-          usertype === "lecturer" ||
-          usertype === "student"
-        ) {
-          navigate(`/${usertype}-dashboard`);
-        } else {
-          dispatch(
-            openSnackbar({
-              message: "Email or password is not correct",
-              isError: true,
-            })
-          );
-        }
+        const response = await axios.post("/students/login", {
+          email,
+          password,
+        });
+        const { data, message } = response?.data;
+        console.log({ response });
+        dispatch(
+          updateAuthentication({
+            access_token: data?.access_token,
+            refresh_token: "",
+            user: data?.user,
+          })
+        );
+        dispatch(openSnackbar({ message: message, isError: false }));
+        navigate("/student-dashboard");
       } catch (error: any) {
-        const errorMessage = error?.code || "failed to login";
+        const errorMessage = error?.response?.data?.message;
         dispatch(openSnackbar({ message: errorMessage, isError: true }));
       } finally {
         setIsSubmitting(false);

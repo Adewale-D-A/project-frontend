@@ -23,6 +23,7 @@ import HardwareSettings from "./pages/(admin)/hardware-settings";
 import StudentRegistration from "./pages/(admin)/register-student";
 import StudentDashboard from "./pages/(student)/student-dashboard";
 import StudentAttendanceHistory from "./pages/(student)/attendance-history";
+import RequireAuth from "./route_protectors/require-auth";
 
 function App() {
   return (
@@ -39,39 +40,44 @@ function App() {
           </Route>
           <Route path="/login" element={<Login />} />
 
-          <Route element={<LecturersRoutes />}>
-            <Route path="/lecturer-dashboard" element={<LecturerDashboard />} />
-            <Route
-              path="/lecturer-analytics"
-              element={<AttendanceAnalytics />}
-            />
-            <Route
-              path="/lecturer-attendance-history"
-              element={<AttendanceHistory />}
-            />
-            <Route
-              path="/lecturer-course-registration"
-              element={<CourseRegistration />}
-            />
-          </Route>
-          <Route element={<AdminRoutes />}>
-            <Route path="/admin-dashboard" element={<AdminDashboard />} />
-            <Route path="/admin-add-lecturer" element={<AddLecturer />} />
-            <Route
-              path="/admin-hardware-settings"
-              element={<HardwareSettings />}
-            />
-            <Route
-              path="/admin-student-registration"
-              element={<StudentRegistration />}
-            />
-          </Route>
-          <Route element={<StudentRoutes />}>
-            <Route path="/student-dashboard" element={<StudentDashboard />} />
-            <Route
-              path="/student-attendance-history"
-              element={<StudentAttendanceHistory />}
-            />
+          <Route element={<RequireAuth />}>
+            <Route element={<LecturersRoutes />}>
+              <Route
+                path="/lecturer-dashboard"
+                element={<LecturerDashboard />}
+              />
+              <Route
+                path="/lecturer-analytics"
+                element={<AttendanceAnalytics />}
+              />
+              <Route
+                path="/lecturer-attendance-history"
+                element={<AttendanceHistory />}
+              />
+              <Route
+                path="/lecturer-course-registration"
+                element={<CourseRegistration />}
+              />
+            </Route>
+            <Route element={<AdminRoutes />}>
+              <Route path="/admin-dashboard" element={<AdminDashboard />} />
+              <Route path="/admin-add-lecturer" element={<AddLecturer />} />
+              <Route
+                path="/admin-hardware-settings"
+                element={<HardwareSettings />}
+              />
+              <Route
+                path="/admin-student-registration"
+                element={<StudentRegistration />}
+              />
+            </Route>
+            <Route element={<StudentRoutes />}>
+              <Route path="/student-dashboard" element={<StudentDashboard />} />
+              <Route
+                path="/student-attendance-history"
+                element={<StudentAttendanceHistory />}
+              />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

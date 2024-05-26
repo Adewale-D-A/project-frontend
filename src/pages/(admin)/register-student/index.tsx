@@ -2,19 +2,61 @@ import { motion } from "framer-motion";
 import { SyntheticEvent, useCallback, useState } from "react";
 import { ClickButtonMain } from "../../../components/buttons";
 import TextInput from "../../../components/inputs/text";
+import useAxios from "../../../services/base/axios/useAxios";
+import { useAppDispatch } from "../../../store/hooks";
+import { openSnackbar } from "../../../store/app_functions/snackbar";
+import PasswordInput from "../../../components/inputs/password";
 
 export default function StudentRegistration() {
+  const axios = useAxios();
+  const dispatch = useAppDispatch();
   const [registrationId, setRegistrationId] = useState("");
   const [email, setEmail] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [matricNumber, setMatricNumber] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleRegistration = useCallback(async (e: SyntheticEvent) => {
-    e.preventDefault();
-  }, []);
+  const handleRegistration = useCallback(
+    async (e: SyntheticEvent) => {
+      e.preventDefault();
+      setIsSubmitting(false);
+      try {
+        const response = await axios.post("/admins/register-users", {
+          firstname,
+          lastname,
+          matric_number: matricNumber,
+          email,
+          username,
+          password,
+          hardware_user_id: registrationId,
+        });
+        console.log({ response });
+        const { data, message } = response?.data;
+        // const modeSet = data?.mode_id
+        // console.log({ response });
+        dispatch(openSnackbar({ message: message, isError: false }));
+      } catch (error: any) {
+        const errorMessage = error?.response?.data?.message;
+        dispatch(openSnackbar({ message: errorMessage, isError: true }));
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
+    [
+      firstname,
+      lastname,
+      matricNumber,
+      email,
+      username,
+      password,
+      registrationId,
+    ]
+  );
+
   return (
     <motion.div
       initial={{ x: -100 }}
@@ -82,6 +124,23 @@ export default function StudentRegistration() {
               label="email address"
               isRequired={true}
               id="email"
+            />
+            <TextInput
+              inputType="text"
+              value={username}
+              setValue={setUsername}
+              placeholder="username"
+              label="username"
+              isRequired={true}
+              id="username"
+            />
+            <PasswordInput
+              value={password}
+              setValue={setPassword}
+              placeholder="password"
+              label="Password"
+              isRequired={true}
+              id="password"
             />
           </div>
 

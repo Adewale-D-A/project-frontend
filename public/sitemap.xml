@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://attendance.app/</loc>
+		<loc>https://project-frontend-indol-theta.vercel.app/</loc>
 		<lastmod>2024-02-08T20:54:12+0000</lastmod>
-	</url>=
+	</url>
+	<url>
+		<loc>https://project-frontend-indol-theta.vercel.app/about-us</loc>
+		<lastmod>2024-02-08T20:54:12+0000</lastmod>
+	</url>
+	<url>
+		<loc>https://project-frontend-indol-theta.vercel.app/team</loc>
+		<lastmod>2024-02-08T20:54:12+0000</lastmod>
+	</url>
+	<url>
+		<loc>https://project-frontend-indol-theta.vercel.app/contact-us</loc>
+		<lastmod>2024-02-08T20:54:12+0000</lastmod>
+	</url>
+	<url>
+		<loc>https://project-frontend-indol-theta.vercel.app/user-guide</loc>
+		<lastmod>2024-02-08T20:54:12+0000</lastmod>
+	</url>
+	<url>
+		<loc>https://project-frontend-indol-theta.vercel.app/login</loc>
+		<lastmod>2024-02-08T20:54:12+0000</lastmod>
+	</url>
 </urlset>

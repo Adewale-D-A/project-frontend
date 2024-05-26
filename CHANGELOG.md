@@ -1,3 +1,16 @@
+##### 05.26.2024
+
+> Authentication logic definition
+> Student's login api integration
+> Student's registration api integration
+> Student's verification history UI and api integration
+> Teams page data update
+
+##### 05.25.2024
+
+> Scroll to top funcitonality for public facing UIs
+> Hardware mode endpoint integration
+
 ##### 05.19.2024
 
 > Problem statement text correction

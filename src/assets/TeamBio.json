@@ -3,7 +3,7 @@
     "name": "Azeez Adewale",
     "position": "Software",
     "shortBio": "Electrical and Electronics Final Year Student",
-    "longBio": "Special interest in software development, artificial intelligence and general fields in improving the efficiency of human lives",
+    "longBio": "Special interest in software development, artificial intelligence and other niche that involves improving the efficiency of human lives",
     "imgSrc": "/adewale.PNG",
     "linkedIn": "https://www.linkedin.com/in/adewale-d-azeez/"
   },
@@ -19,8 +19,8 @@
     "name": "Mustapha Ibrahim",
     "position": "Software",
     "shortBio": "Electrical and Electronics Final Year Student",
-    "longBio": "",
-    "imgSrc": "/portrait_placeholder.png",
+    "longBio": "CEO of MiiM Telecoms",
+    "imgSrc": "/Ibrahim.jpg",
     "linkedIn": "#"
   },
   {
@@ -35,16 +35,16 @@
     "name": "Adeseye Abdulrasheed",
     "position": "Hardware",
     "shortBio": "Electrical and Electronics Final Year Student",
-    "longBio": "",
-    "imgSrc": "/portrait_placeholder.png",
+    "longBio": "C.E.O Tolipizzle Services",
+    "imgSrc": "/Adesheye.jpg",
     "linkedIn": "#"
   },
   {
     "name": "Usman Olamilekan",
     "position": "Data Collection",
     "shortBio": "Electrical and Electronics Final Year Student",
-    "longBio": "",
-    "imgSrc": "/portrait_placeholder.png",
-    "linkedIn": "#"
+    "longBio": "CEO, ASIKOLAYE GLOBAL SERVICES and I enjoy working in Real estate and animal husbandry",
+    "imgSrc": "/Usman.jpg",
+    "linkedIn": "https://www.linkedin.com/in/usman-usman-469654258"
   }
 ]

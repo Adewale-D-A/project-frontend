@@ -4,4 +4,4 @@ User-Agent: *
 Allow: /
 Disallow: /private/
 
-Sitemap: https://attendance.app/sitemap.xml
+Sitemap: https://project-frontend-indol-theta.vercel.app/sitemap.xml

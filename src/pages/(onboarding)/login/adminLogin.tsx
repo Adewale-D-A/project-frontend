@@ -10,7 +10,7 @@ import useAxios from "../../../services/base/axios/useAxios";
 import { updateAuthentication } from "../../../store/user/auth";
 import { Button, Divider } from "@mui/material";
 
-export default function Login() {
+export default function AdminLogin() {
   const axios = useAxios();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function Login() {
       e.preventDefault();
       setIsSubmitting(true);
       try {
-        const response = await axios.post("/students/login", {
+        const response = await axios.post("/admins/login", {
           email,
           password,
         });
@@ -39,7 +39,7 @@ export default function Login() {
           })
         );
         dispatch(openSnackbar({ message: message, isError: false }));
-        navigate("/student/dashboard");
+        navigate("/admin/dashboard");
       } catch (error: any) {
         const errorMessage = error?.response?.data?.message;
         dispatch(openSnackbar({ message: errorMessage, isError: true }));
@@ -62,9 +62,7 @@ export default function Login() {
             <Link to={"/"} className="w-full flex justify-center">
               <img src="/logo192.png" alt="" className=" w-20 md:w-40 h-auto" />
             </Link>
-            <h5 className=" text-2xl text-center">
-              Student User, Welcome Back
-            </h5>
+            <h5 className=" text-2xl text-center">Admin User, Welcome Back</h5>
             <div className="w-full flex flex-col items-center justify-center gap-3">
               <form
                 onSubmit={handleSubit}
@@ -108,24 +106,24 @@ export default function Login() {
                 <Button
                   fullWidth
                   variant="outlined"
+                  to="/login"
+                  component={Link}
+                >
+                  Student User
+                </Button>
+                <Button
+                  fullWidth
+                  variant="outlined"
                   to="/lecturer/login"
                   component={Link}
                 >
                   Lecturer User
                 </Button>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  to="/admin/login"
-                  component={Link}
-                >
-                  Admin User
-                </Button>
               </div>
             </div>{" "}
           </div>
         </div>
-        <div className="w-1/2 fixed right-0 top-0  h-screen hidden md:block student-bg bg-primary-500/70 bg-center bg-no-repeat bg-cover"></div>
+        <div className="w-1/2 fixed right-0 top-0  h-screen hidden md:block admin-bg bg-primary-500/70 bg-center bg-no-repeat bg-cover"></div>
       </div>
     </motion.div>
   );

@@ -6,17 +6,18 @@ import useAxios from "../../../services/base/axios/useAxios";
 import { useAppDispatch } from "../../../store/hooks";
 import { openSnackbar } from "../../../store/app_functions/snackbar";
 import PasswordInput from "../../../components/inputs/password";
+import SelectInput from "../../../components/inputs/select";
+import { MenuItem } from "@mui/material";
 
-export default function StudentRegistration() {
+export default function AddAdmin() {
   const axios = useAxios();
   const dispatch = useAppDispatch();
-  const [registrationId, setRegistrationId] = useState("");
-  const [email, setEmail] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-  const [matricNumber, setMatricNumber] = useState("");
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [privilege, setPrivilege] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -25,14 +26,13 @@ export default function StudentRegistration() {
       e.preventDefault();
       setIsSubmitting(true);
       try {
-        const response = await axios.post("/admins/register-users", {
+        const response = await axios.post("/admins/register-admins", {
           firstname,
           lastname,
-          matric_number: matricNumber,
           email,
-          username,
           password,
-          hardware_user_id: registrationId,
+          username,
+          privilege,
         });
         console.log({ response });
         const { data, message } = response?.data;
@@ -42,8 +42,7 @@ export default function StudentRegistration() {
         setFirstname("");
         setLastname("");
         setEmail("");
-        setRegistrationId("");
-        setMatricNumber("");
+        setPrivilege("");
         setUsername("");
         setPassword("");
       } catch (error: any) {
@@ -53,15 +52,7 @@ export default function StudentRegistration() {
         setIsSubmitting(false);
       }
     },
-    [
-      firstname,
-      lastname,
-      matricNumber,
-      email,
-      username,
-      password,
-      registrationId,
-    ]
+    [firstname, lastname, privilege, email, password, username]
   );
 
   return (
@@ -76,25 +67,6 @@ export default function StudentRegistration() {
           onSubmit={handleRegistration}
           className=" w-full flex flex-col gap-4 max-w-screen-xl px-5 md:px-10"
         >
-          <div className=" w-full flex items-center gap-7">
-            <div className=" w-full max-w-md">
-              <TextInput
-                inputType="text"
-                value={registrationId}
-                setValue={setRegistrationId}
-                placeholder="Registration ID"
-                label="Registration ID"
-                isRequired={true}
-                id="ragistration-id"
-              />
-            </div>
-
-            <ClickButtonMain
-              isLoading={isSubmitting}
-              type="button"
-              label="Fetch ID"
-            />
-          </div>
           <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-5">
             <TextInput
               inputType="text"
@@ -114,24 +86,46 @@ export default function StudentRegistration() {
               isRequired={true}
               id="lastname"
             />
-            <TextInput
-              inputType="text"
-              value={matricNumber}
-              setValue={setMatricNumber}
-              placeholder="Matric Number"
-              label="Matric Number"
+            <SelectInput
+              label="Privilege"
+              value={privilege}
+              setValue={setPrivilege}
+              id="title"
               isRequired={true}
-              id="text"
-            />
-            <TextInput
-              inputType="email"
-              value={email}
-              setValue={setEmail}
-              placeholder="student email address"
-              label="email address"
-              isRequired={true}
-              id="email"
-            />
+            >
+              <MenuItem
+                sx={{ color: "primary.main" }}
+                value={""}
+                disabled={true}
+              >
+                select a admin role
+              </MenuItem>
+              {[
+                {
+                  id: 2,
+                  label: "Student Registerer",
+                  value: 6,
+                },
+                {
+                  id: 3,
+                  label: "Lecturer Registerer",
+                  value: 5,
+                },
+                {
+                  id: 4,
+                  label: "Hardware Controller",
+                  value: 4,
+                },
+              ].map((item) => (
+                <MenuItem
+                  sx={{ color: "primary.main" }}
+                  key={item?.id}
+                  value={item?.value}
+                >
+                  {item?.label}
+                </MenuItem>
+              ))}
+            </SelectInput>
             <TextInput
               inputType="text"
               value={username}
@@ -140,6 +134,15 @@ export default function StudentRegistration() {
               label="username"
               isRequired={true}
               id="username"
+            />
+            <TextInput
+              inputType="email"
+              value={email}
+              setValue={setEmail}
+              placeholder="email address"
+              label="email address"
+              isRequired={true}
+              id="email"
             />
             <PasswordInput
               value={password}
@@ -155,7 +158,7 @@ export default function StudentRegistration() {
             <ClickButtonMain
               isLoading={isSubmitting}
               type="submit"
-              label="Register"
+              label="Register admin"
             />
           </div>
         </form>

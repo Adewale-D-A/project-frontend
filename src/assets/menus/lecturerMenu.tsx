@@ -1,7 +1,7 @@
 const lecturerNavItems = [
   {
     id: 1,
-    url: "/lecturer-dashboard",
+    url: "/lecturer/dashboard",
     label: "Dashboard",
     value: "Dashboard",
     icon: (
@@ -31,7 +31,7 @@ const lecturerNavItems = [
   },
   {
     id: 2,
-    url: "/lecturer-analytics",
+    url: "/lecturer/analytics",
     label: "Analytics",
     value: "analytics",
     icon: (
@@ -61,7 +61,7 @@ const lecturerNavItems = [
   },
   {
     id: 3,
-    url: "/lecturer-attendance-history",
+    url: "/lecturer/attendance-history",
     label: "Attendance History",
     value: "attendance-history",
     icon: (
@@ -92,7 +92,7 @@ const lecturerNavItems = [
   },
   {
     id: 4,
-    url: "/lecturer-course-registration",
+    url: "/lecturer/course-registration",
     label: "Course Registration",
     value: "course-registration",
     icon: (

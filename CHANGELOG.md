@@ -1,3 +1,9 @@
+##### 05.31.2024
+
+> Admin, lecturer login api integration and UI development
+> Admin 'add-admin' and 'add-lecturer' UI development and API integration
+> Course registration csv parsing, logic redefinition and API integration
+
 ##### 05.26.2024
 
 > Course error fix testing

@@ -36,6 +36,17 @@ body {
   background-image: url("/public/footer_pattern.svg");
 }
 
+.admin-bg {
+  background-image: url("/public/admin.jpg");
+}
+
+.lecturer-bg {
+  background-image: url("/public/lecturer.svg");
+}
+.student-bg {
+  background-image: url("/public/student.svg");
+}
+
 .bg-semi-circle-left {
   background-image: url(/public/semiCircle2.png);
 }

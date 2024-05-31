@@ -19,6 +19,7 @@ export default function StudentRegistration() {
   const [password, setPassword] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuggestingId, setIsSuggestingId] = useState(false);
 
   const handleRegistration = useCallback(
     async (e: SyntheticEvent) => {
@@ -64,6 +65,28 @@ export default function StudentRegistration() {
     ]
   );
 
+  const fetchIdSuggestion = useCallback(async () => {
+    setIsSuggestingId(true);
+    try {
+      const response = await axios.get("/hardware/suggested-id");
+      const { data, message } = response?.data;
+      setRegistrationId(`${data?.previous_id}`);
+      dispatch(openSnackbar({ message: message, isError: false }));
+    } catch (error: any) {
+      const errorMessage = error?.response?.data?.message;
+      dispatch(
+        openSnackbar({
+          message: errorMessage
+            ? errorMessage
+            : "Ooop! Somethigng went wrong, please try again later",
+          isError: true,
+        })
+      );
+    } finally {
+      setIsSuggestingId(false);
+    }
+  }, []);
+
   return (
     <motion.div
       initial={{ x: -100 }}
@@ -90,7 +113,8 @@ export default function StudentRegistration() {
             </div>
 
             <ClickButtonMain
-              isLoading={isSubmitting}
+              clickHandler={fetchIdSuggestion}
+              isLoading={isSuggestingId}
               type="button"
               label="Fetch ID"
             />

@@ -1,7 +1,7 @@
 const studentNavItems = [
   {
     id: 1,
-    url: "/student-dashboard",
+    url: "/student/dashboard",
     label: "Dashboard",
     value: "Dashboard",
     icon: (
@@ -31,7 +31,7 @@ const studentNavItems = [
   },
   {
     id: 2,
-    url: "/student-attendance-history",
+    url: "/student/attendance-history",
     label: "Attendance History",
     value: "attendance-history",
     icon: (

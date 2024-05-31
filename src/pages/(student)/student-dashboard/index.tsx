@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import LinkButtonMain from "../../../components/buttons/link_button_main";
+import { useAppSelector } from "../../../store/hooks";
 
 export default function StudentDashboard() {
+  const { user } = useAppSelector((state) => state?.userAuthentication?.value);
+
   return (
     <motion.div
       initial={{ x: -100 }}
@@ -25,7 +27,7 @@ export default function StudentDashboard() {
                   <h3 className=" text-2xl md:text-3xl font-semibold">
                     Student's Dashboard
                   </h3>
-                  <p>18/30gc027@io.com</p>
+                  <p>{user?.matric_number}</p>
                 </div>
               </div>
             </div>
@@ -45,11 +47,11 @@ export default function StudentDashboard() {
                         <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
                       </svg>
                     ),
-                    value: 3,
+                    value: 0,
                     subSection: [
                       {
                         id: 1.1,
-                        value: 2,
+                        value: 0,
                         label: "active",
                       },
                     ],
@@ -67,17 +69,17 @@ export default function StudentDashboard() {
                         <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75ZM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 0 1-1.875-1.875V8.625ZM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 0 1 3 19.875v-6.75Z" />
                       </svg>
                     ),
-                    value: 15,
+                    value: 0,
                     subSection: [
                       {
                         id: 2.1,
-                        value: 5,
-                        label: "ELE 325",
+                        value: 0,
+                        label: "COURSE CODE",
                       },
                       {
                         id: 2.2,
-                        value: 10,
-                        label: "ELE 311",
+                        value: 0,
+                        label: "COURSE CODE",
                       },
                     ],
                   },
@@ -98,16 +100,16 @@ export default function StudentDashboard() {
                         />
                       </svg>
                     ),
-                    value: 0.7,
+                    value: 0,
                     subSection: [
                       {
                         id: 3.1,
-                        value: 0.5,
+                        value: 0,
                         label: "attendance rate",
                       },
                       {
                         id: 3.2,
-                        value: 0.2,
+                        value: 0,
                         label: "punctuality",
                       },
                     ],

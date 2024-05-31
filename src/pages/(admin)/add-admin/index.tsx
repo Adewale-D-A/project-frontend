@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { SyntheticEvent, useCallback, useState } from "react";
-import { MenuItem } from "@mui/material";
 import { ClickButtonMain } from "../../../components/buttons";
 import TextInput from "../../../components/inputs/text";
 import useAxios from "../../../services/base/axios/useAxios";
@@ -8,17 +7,17 @@ import { useAppDispatch } from "../../../store/hooks";
 import { openSnackbar } from "../../../store/app_functions/snackbar";
 import PasswordInput from "../../../components/inputs/password";
 import SelectInput from "../../../components/inputs/select";
+import { MenuItem } from "@mui/material";
 
-export default function AddLecturer() {
+export default function AddAdmin() {
   const axios = useAxios();
   const dispatch = useAppDispatch();
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  const [title, setTitle] = useState("");
-  const [courses, setCourses] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [privilege, setPrivilege] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -27,14 +26,13 @@ export default function AddLecturer() {
       e.preventDefault();
       setIsSubmitting(true);
       try {
-        const response = await axios.post("/admins/register-lecturers", {
+        const response = await axios.post("/admins/register-admins", {
           firstname,
           lastname,
-          title,
-          courses,
           email,
           password,
           username,
+          privilege,
         });
         console.log({ response });
         const { data, message } = response?.data;
@@ -44,25 +42,17 @@ export default function AddLecturer() {
         setFirstname("");
         setLastname("");
         setEmail("");
-        setTitle("");
-        setCourses("");
+        setPrivilege("");
         setUsername("");
         setPassword("");
       } catch (error: any) {
         const errorMessage = error?.response?.data?.message;
-        dispatch(
-          openSnackbar({
-            message: errorMessage
-              ? errorMessage
-              : "Ooops! Something went wrong, please try again later",
-            isError: true,
-          })
-        );
+        dispatch(openSnackbar({ message: errorMessage, isError: true }));
       } finally {
         setIsSubmitting(false);
       }
     },
-    [firstname, lastname, title, courses, email, password, username]
+    [firstname, lastname, privilege, email, password, username]
   );
 
   return (
@@ -97,9 +87,9 @@ export default function AddLecturer() {
               id="lastname"
             />
             <SelectInput
-              label="Title"
-              value={title}
-              setValue={setTitle}
+              label="Privilege"
+              value={privilege}
+              setValue={setPrivilege}
               id="title"
               isRequired={true}
             >
@@ -108,23 +98,23 @@ export default function AddLecturer() {
                 value={""}
                 disabled={true}
               >
-                select a title
+                select a admin role
               </MenuItem>
               {[
                 {
-                  id: 1,
-                  label: "None",
-                  value: "none",
-                },
-                {
                   id: 2,
-                  label: "Doctor",
-                  value: "doctor",
+                  label: "Student Registerer",
+                  value: 6,
                 },
                 {
                   id: 3,
-                  label: "Prof.",
-                  value: "prof",
+                  label: "Lecturer Registerer",
+                  value: 5,
+                },
+                {
+                  id: 4,
+                  label: "Hardware Controller",
+                  value: 4,
                 },
               ].map((item) => (
                 <MenuItem
@@ -136,15 +126,6 @@ export default function AddLecturer() {
                 </MenuItem>
               ))}
             </SelectInput>
-            <TextInput
-              inputType="text"
-              value={courses}
-              setValue={setCourses}
-              placeholder="Seperate multiple courses my a comma"
-              label="Courses"
-              isRequired={true}
-              id="text"
-            />
             <TextInput
               inputType="text"
               value={username}
@@ -177,7 +158,7 @@ export default function AddLecturer() {
             <ClickButtonMain
               isLoading={isSubmitting}
               type="submit"
-              label="Register lecturer"
+              label="Register admin"
             />
           </div>
         </form>

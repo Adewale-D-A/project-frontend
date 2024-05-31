@@ -24,6 +24,9 @@ import StudentRegistration from "./pages/(admin)/register-student";
 import StudentDashboard from "./pages/(student)/student-dashboard";
 import StudentAttendanceHistory from "./pages/(student)/attendance-history";
 import RequireAuth from "./route_protectors/require-auth";
+import LecturerLogin from "./pages/(onboarding)/login/lecturerLogin";
+import AdminLogin from "./pages/(onboarding)/login/adminLogin";
+import AddAdmin from "./pages/(admin)/add-admin";
 
 function App() {
   return (
@@ -39,42 +42,45 @@ function App() {
             <Route path="/user-guide" element={<UserGuide />} />
           </Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/lecturer/login" element={<LecturerLogin />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
 
           <Route element={<RequireAuth />}>
             <Route element={<LecturersRoutes />}>
               <Route
-                path="/lecturer-dashboard"
+                path="/lecturer/dashboard"
                 element={<LecturerDashboard />}
               />
               <Route
-                path="/lecturer-analytics"
+                path="/lecturer/analytics"
                 element={<AttendanceAnalytics />}
               />
               <Route
-                path="/lecturer-attendance-history"
+                path="/lecturer/attendance-history"
                 element={<AttendanceHistory />}
               />
               <Route
-                path="/lecturer-course-registration"
+                path="/lecturer/course-registration"
                 element={<CourseRegistration />}
               />
             </Route>
             <Route element={<AdminRoutes />}>
-              <Route path="/admin-dashboard" element={<AdminDashboard />} />
-              <Route path="/admin-add-lecturer" element={<AddLecturer />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route
-                path="/admin-hardware-settings"
-                element={<HardwareSettings />}
-              />
-              <Route
-                path="/admin-student-registration"
+                path="/admin/student-registration"
                 element={<StudentRegistration />}
+              />
+              <Route path="/admin/add-lecturers" element={<AddLecturer />} />
+              <Route path="/admin/add-admins" element={<AddAdmin />} />
+              <Route
+                path="/admin/hardware-settings"
+                element={<HardwareSettings />}
               />
             </Route>
             <Route element={<StudentRoutes />}>
-              <Route path="/student-dashboard" element={<StudentDashboard />} />
+              <Route path="/student/dashboard" element={<StudentDashboard />} />
               <Route
-                path="/student-attendance-history"
+                path="/student/attendance-history"
                 element={<StudentAttendanceHistory />}
               />
             </Route>

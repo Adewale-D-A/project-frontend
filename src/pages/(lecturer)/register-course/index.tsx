@@ -3,23 +3,49 @@ import { SyntheticEvent, useCallback, useState } from "react";
 import SingleCSVUpload from "../../../components/drag_n_drop/single_csv_upload";
 import TextInput from "../../../components/inputs/text";
 import { ClickButtonMain } from "../../../components/buttons";
+import useAxios from "../../../services/base/axios/useAxios";
+import { useAppDispatch } from "../../../store/hooks";
+import { openSnackbar } from "../../../store/app_functions/snackbar";
+import { Button } from "@mui/material";
+import { Download } from "@mui/icons-material";
 
 export default function CourseRegistration() {
-  const [uploadedFiles, setUploadFiles] = useState<{
-    name: string;
-    size: number;
-    type: string;
-  }>({} as any);
+  const axios = useAxios();
+  const dispatch = useAppDispatch();
+  const [csvData, setCsvData] = useState<
+    { matric_number: string; fullname: string }[]
+  >([]);
 
-  const [email, setEmail] = useState("");
   const [courseCode, setCourseCode] = useState("");
   const [course, setCourse] = useState("");
-  const [lecturerName, setLecturerName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleRegistration = useCallback(async (e: SyntheticEvent) => {
-    e.preventDefault();
-  }, []);
+  const handleRegistration = useCallback(
+    async (e: SyntheticEvent) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+      try {
+        const response = await axios.post("/lecturers/register-course", {
+          course_code: courseCode,
+          students: csvData,
+        });
+        console.log({ response });
+        const { data, message } = response?.data;
+        // const modeSet = data?.mode_id
+        // console.log({ response });
+        dispatch(openSnackbar({ message: message, isError: false }));
+        setCourseCode("");
+        setCourse("");
+        setCsvData([]);
+      } catch (error: any) {
+        const errorMessage = error?.response?.data?.message;
+        dispatch(openSnackbar({ message: errorMessage, isError: true }));
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
+    [courseCode, csvData]
+  );
 
   return (
     <motion.div
@@ -30,10 +56,7 @@ export default function CourseRegistration() {
     >
       <section className=" w-full flex flex-col items-center">
         <div className=" w-full flex flex-col gap-4 max-w-screen-xl px-5 md:px-10">
-          <SingleCSVUpload
-            uploadedFiles={uploadedFiles}
-            setUploadFiles={setUploadFiles}
-          />
+          <SingleCSVUpload csvData={csvData} setCsvData={setCsvData} />
           <form
             onSubmit={handleRegistration}
             className=" w-full flex flex-col gap-4 max-w-screen-xl px-5 md:px-10"
@@ -57,24 +80,6 @@ export default function CourseRegistration() {
                 isRequired={true}
                 id="course-name"
               />
-              <TextInput
-                inputType="text"
-                value={lecturerName}
-                setValue={setLecturerName}
-                placeholder="Lecturer's Name"
-                label="Lecturer's Name"
-                isRequired={true}
-                id="text"
-              />
-              <TextInput
-                inputType="email"
-                value={email}
-                setValue={setEmail}
-                placeholder="Lecturer's email address"
-                label="Lecturer's email address"
-                isRequired={true}
-                id="email"
-              />
             </div>
 
             <div className=" mt-4">
@@ -87,6 +92,18 @@ export default function CourseRegistration() {
           </form>
         </div>
       </section>
+
+      <div className=" animate-bounce fixed bottom-10 right-10">
+        <Button
+          variant="contained"
+          component="a"
+          href={"/REGISTERED_STUDENTS_SAMPLE.csv"}
+          download
+          endIcon={<Download />}
+        >
+          Download sample
+        </Button>
+      </div>
     </motion.div>
   );
 }

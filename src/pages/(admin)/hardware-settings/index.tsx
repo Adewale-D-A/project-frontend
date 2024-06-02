@@ -16,6 +16,9 @@ export default function HardwareSettings() {
   const [purgeStatus, setPurgeStatus] = useState("0");
   const [submittingMode, setSubmittingMode] = useState(false);
 
+  const [removeUserId, setRemoveUserId] = useState("");
+  const [removingUser, setRemovingUser] = useState(false);
+
   const handleModeSubmit = useCallback(
     async (e: SyntheticEvent) => {
       setSubmittingMode(true);
@@ -49,6 +52,27 @@ export default function HardwareSettings() {
     },
     [mode, purgeStatus, deleteId]
   );
+
+  const handleRemoveUserId = useCallback(
+    async (e: SyntheticEvent) => {
+      e.preventDefault();
+      setRemovingUser(true);
+      try {
+        const response = await axios.post("/admins/set-id-to-delete", {
+          userId: removeUserId,
+        });
+        const { data, message } = response?.data;
+        dispatch(openSnackbar({ message: message, isError: false }));
+      } catch (error: any) {
+        const errorMessage = error?.response?.data?.message;
+        dispatch(openSnackbar({ message: errorMessage, isError: true }));
+      } finally {
+        setRemovingUser(true);
+      }
+    },
+    [removeUserId]
+  );
+
   return (
     <motion.div
       initial={{ x: -100 }}
@@ -57,10 +81,10 @@ export default function HardwareSettings() {
       className="w-full flex flex-col items-center gap-16 py-28 md:py-36"
     >
       <section className=" w-full flex flex-col items-center">
-        <div className=" w-full flex flex-col gap-4 max-w-screen-xl px-5 md:px-10">
+        <div className=" w-full flex flex-col gap-6 max-w-screen-xl px-5 md:px-10">
           <form
             onSubmit={handleModeSubmit}
-            className=" w-full grid grid-cols-2 p-4 gap-5 rounded-md shadow-lg"
+            className=" w-full grid grid-cols-1 md:grid-cols-2 p-4 gap-5 rounded-md shadow-lg"
           >
             <SelectInput
               label="Hardware Mode"
@@ -144,6 +168,28 @@ export default function HardwareSettings() {
                 isLoading={submittingMode}
                 type="submit"
                 label="save"
+              />
+            </div>
+          </form>
+
+          <form
+            onSubmit={handleRemoveUserId}
+            className=" w-full grid grid-cols-1 md:grid-cols-2 p-4 gap-5 rounded-md shadow-lg"
+          >
+            <TextInput
+              inputType="number"
+              value={removeUserId}
+              setValue={setRemoveUserId}
+              placeholder="Remove this user with hardware ID"
+              label="Remove user"
+              isRequired={true}
+              id="remove user"
+            />
+            <div className=" flex items-center">
+              <ClickButtonMain
+                isLoading={submittingMode}
+                type="submit"
+                label="Set Id"
               />
             </div>
           </form>

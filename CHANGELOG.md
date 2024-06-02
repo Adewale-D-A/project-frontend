@@ -1,5 +1,6 @@
 ##### 06.2.2024
 
+> Delete user by ID Ui development
 > Lecturer's fetching verified users based on verification time range
 > fingperint index for newly registered Users UI update update and API integration
 

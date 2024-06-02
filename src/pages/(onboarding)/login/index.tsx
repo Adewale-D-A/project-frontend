@@ -71,11 +71,11 @@ export default function Login() {
                 className="w-full flex flex-col items-center max-w-xl"
               >
                 <TextInput
-                  inputType="email"
+                  inputType="matric-number-email"
                   value={email}
                   setValue={setEmail}
-                  placeholder="your email address"
-                  label="email address"
+                  placeholder="for example 18/30gc027@io.com"
+                  label="matric number email"
                   isRequired={true}
                   id="email"
                 />

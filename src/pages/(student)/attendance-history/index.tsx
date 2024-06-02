@@ -33,7 +33,7 @@ export default function StudentAttendanceHistory() {
                 <thead>
                   <tr className=" text-left bg-gray-200/15">
                     <th>S/N</th>
-                    <th>Name</th>
+                    <th>Matric Number</th>
                     <th>Date/Time</th>
                   </tr>
                 </thead>

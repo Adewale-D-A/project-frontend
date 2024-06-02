@@ -6,6 +6,8 @@ import useAxios from "../../../services/base/axios/useAxios";
 import { useAppDispatch } from "../../../store/hooks";
 import { openSnackbar } from "../../../store/app_functions/snackbar";
 import PasswordInput from "../../../components/inputs/password";
+import SelectInput from "../../../components/inputs/select";
+import { MenuItem } from "@mui/material";
 
 export default function StudentRegistration() {
   const axios = useAxios();
@@ -17,6 +19,8 @@ export default function StudentRegistration() {
   const [matricNumber, setMatricNumber] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [registeredIndex, setRegisteredIndex] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuggestingId, setIsSuggestingId] = useState(false);
@@ -25,6 +29,8 @@ export default function StudentRegistration() {
     async (e: SyntheticEvent) => {
       e.preventDefault();
       setIsSubmitting(true);
+      if (password === confirmPassword) {
+      }
       try {
         const response = await axios.post("/admins/register-users", {
           firstname,
@@ -34,6 +40,7 @@ export default function StudentRegistration() {
           username,
           password,
           hardware_user_id: registrationId,
+          registered_index: registeredIndex,
         });
         console.log({ response });
         const { data, message } = response?.data;
@@ -61,7 +68,9 @@ export default function StudentRegistration() {
       email,
       username,
       password,
+      confirmPassword,
       registrationId,
+      registeredIndex,
     ]
   );
 
@@ -165,6 +174,65 @@ export default function StudentRegistration() {
               isRequired={true}
               id="username"
             />
+
+            <SelectInput
+              label="Fingerprint Index"
+              value={registeredIndex}
+              setValue={setRegisteredIndex}
+              id="fingerprint-index"
+              isRequired={true}
+            >
+              {[
+                {
+                  value: "right-thumb",
+                  label: "Right Thumb",
+                },
+                {
+                  value: "right-index",
+                  label: "Right Index",
+                },
+                {
+                  value: "right-middlefinger",
+                  label: "Right Middlefinger",
+                },
+                {
+                  value: "right-ringfinger",
+                  label: "Right Ringfinger",
+                },
+                {
+                  value: "right-smallfinger",
+                  label: "Right Smallfinger",
+                },
+                {
+                  value: "left-thumb",
+                  label: "Left Thumb",
+                },
+                {
+                  value: "left-index",
+                  label: "Left Index",
+                },
+                {
+                  value: "left-middlefinger",
+                  label: "Left Middlefinger",
+                },
+                {
+                  value: "left-ringfinger",
+                  label: "Left Ringfinger",
+                },
+                {
+                  value: "left-smallfinger",
+                  label: "Left Smallfinger",
+                },
+              ].map((option) => (
+                <MenuItem
+                  sx={{ color: "primary.main" }}
+                  key={option?.value}
+                  value={option?.value}
+                >
+                  {option?.label}
+                </MenuItem>
+              ))}
+            </SelectInput>
             <PasswordInput
               value={password}
               setValue={setPassword}
@@ -172,6 +240,14 @@ export default function StudentRegistration() {
               label="Password"
               isRequired={true}
               id="password"
+            />
+            <PasswordInput
+              value={confirmPassword}
+              setValue={setConfirmPassword}
+              placeholder="confirm password"
+              label="Confirm password"
+              isRequired={true}
+              id="confirm-password"
             />
           </div>
 

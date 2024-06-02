@@ -53,6 +53,7 @@ export default function StudentRegistration() {
           setMatricNumber("");
           setUsername("");
           setPassword("");
+          setConfirmPassword("");
         } catch (error: any) {
           const errorMessage = error?.response?.data?.message;
           dispatch(openSnackbar({ message: errorMessage, isError: true }));

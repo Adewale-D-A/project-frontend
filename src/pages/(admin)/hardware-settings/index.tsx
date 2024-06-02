@@ -17,7 +17,7 @@ export default function HardwareSettings() {
   const [submittingMode, setSubmittingMode] = useState(false);
 
   const [removeUserId, setRemoveUserId] = useState("");
-  const [removingUser, setRemovingUser] = useState(false);
+  const [isRemovingUser, setIsRemovingUser] = useState(false);
 
   const handleModeSubmit = useCallback(
     async (e: SyntheticEvent) => {
@@ -38,7 +38,6 @@ export default function HardwareSettings() {
             reply: purgeStatus,
           });
         }
-        console.log({ response });
         const { data, message } = response?.data;
         // const modeSet = data?.mode_id
         // console.log({ response });
@@ -56,7 +55,7 @@ export default function HardwareSettings() {
   const handleRemoveUserId = useCallback(
     async (e: SyntheticEvent) => {
       e.preventDefault();
-      setRemovingUser(true);
+      setIsRemovingUser(true);
       try {
         const response = await axios.post("/admins/set-id-to-delete", {
           userId: removeUserId,
@@ -67,7 +66,7 @@ export default function HardwareSettings() {
         const errorMessage = error?.response?.data?.message;
         dispatch(openSnackbar({ message: errorMessage, isError: true }));
       } finally {
-        setRemovingUser(true);
+        setIsRemovingUser(true);
       }
     },
     [removeUserId]
@@ -187,7 +186,7 @@ export default function HardwareSettings() {
             />
             <div className=" flex items-center">
               <ClickButtonMain
-                isLoading={submittingMode}
+                isLoading={isRemovingUser}
                 type="submit"
                 label="Set Id"
               />

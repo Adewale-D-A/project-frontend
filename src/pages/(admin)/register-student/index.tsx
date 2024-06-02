@@ -30,35 +30,39 @@ export default function StudentRegistration() {
       e.preventDefault();
       setIsSubmitting(true);
       if (password === confirmPassword) {
-      }
-      try {
-        const response = await axios.post("/admins/register-users", {
-          firstname,
-          lastname,
-          matric_number: matricNumber,
-          email,
-          username,
-          password,
-          hardware_user_id: registrationId,
-          registered_index: registeredIndex,
-        });
-        console.log({ response });
-        const { data, message } = response?.data;
-        // const modeSet = data?.mode_id
-        // console.log({ response });
-        dispatch(openSnackbar({ message: message, isError: false }));
-        setFirstname("");
-        setLastname("");
-        setEmail("");
-        setRegistrationId("");
-        setMatricNumber("");
-        setUsername("");
-        setPassword("");
-      } catch (error: any) {
-        const errorMessage = error?.response?.data?.message;
-        dispatch(openSnackbar({ message: errorMessage, isError: true }));
-      } finally {
-        setIsSubmitting(false);
+        try {
+          const response = await axios.post("/admins/register-users", {
+            firstname,
+            lastname,
+            matric_number: matricNumber,
+            email,
+            username,
+            password,
+            hardware_user_id: registrationId,
+            registered_index: registeredIndex,
+          });
+          console.log({ response });
+          const { data, message } = response?.data;
+          // const modeSet = data?.mode_id
+          // console.log({ response });
+          dispatch(openSnackbar({ message: message, isError: false }));
+          setFirstname("");
+          setLastname("");
+          setEmail("");
+          setRegistrationId("");
+          setMatricNumber("");
+          setUsername("");
+          setPassword("");
+        } catch (error: any) {
+          const errorMessage = error?.response?.data?.message;
+          dispatch(openSnackbar({ message: errorMessage, isError: true }));
+        } finally {
+          setIsSubmitting(false);
+        }
+      } else {
+        dispatch(
+          openSnackbar({ message: "Passwords do not match", isError: true })
+        );
       }
     },
     [

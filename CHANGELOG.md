@@ -1,3 +1,8 @@
+##### 06.2.2024
+
+> Lecturer's fetching verified users based on verification time range
+> fingperint index for newly registered Users UI update update and API integration
+
 ##### 05.31.2024
 
 > Admin student registeration flow completion

@@ -20,8 +20,10 @@ export default function AttendanceHistory() {
       user_table_id: number;
       matric_number: string;
       timestamp: string;
+      fullname: string;
     }[]
   >([]);
+
   const [course, setCourse] = useState("");
   const [startDateTime, setStartDateTime] = useState("");
   const [endDateTime, setEndDateTime] = useState("");
@@ -72,8 +74,8 @@ export default function AttendanceHistory() {
             >
               {[
                 {
-                  value: "ele360",
-                  label: "ELE 350",
+                  value: "ele570",
+                  label: "ELE 570",
                 },
               ].map((option) => (
                 <MenuItem
@@ -125,6 +127,7 @@ export default function AttendanceHistory() {
                   <tr className=" text-left bg-gray-200/15">
                     <th>S/N</th>
                     <th>Matric Number</th>
+                    <th>Fullname</th>
                     <th>Date/Time</th>
                   </tr>
                 </thead>
@@ -136,6 +139,11 @@ export default function AttendanceHistory() {
                         <td>
                           <div className="flex flex-col">
                             <span>{request?.matric_number}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="flex flex-col">
+                            <span>{request?.fullname}</span>
                           </div>
                         </td>
                         <td>

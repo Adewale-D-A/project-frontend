@@ -140,8 +140,8 @@ export default function AddLecturer() {
               inputType="text"
               value={courses}
               setValue={setCourses}
-              placeholder="Seperate multiple courses my a comma"
-              label="Courses"
+              placeholder="Seperate multiple course codes my a comma e.g ELE560,ELE556"
+              label="Course codes"
               isRequired={true}
               id="text"
             />

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { SyntheticEvent, useCallback, useState } from "react";
 import useAxios from "../../../services/base/axios/useAxios";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { openSnackbar } from "../../../store/app_functions/snackbar";
 import { MenuItem } from "@mui/material";
 import SelectInput from "../../../components/inputs/select";
@@ -14,6 +14,8 @@ import formatDate, { formatTime } from "../../../utils/isoDateConverter";
 export default function AttendanceHistory() {
   const axios = useAxios();
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state?.userAuthentication?.value);
+
   const [attendanceData, setAttendanceData] = useState<
     {
       id: number;
@@ -72,18 +74,13 @@ export default function AttendanceHistory() {
               id="course-code"
               isRequired={true}
             >
-              {[
-                {
-                  value: "ele570",
-                  label: "ELE 570",
-                },
-              ].map((option) => (
+              {user?.courses.map((course) => (
                 <MenuItem
                   sx={{ color: "primary.main" }}
-                  key={option?.value}
-                  value={option?.value}
+                  key={course}
+                  value={course?.toLocaleLowerCase()}
                 >
-                  {option?.label}
+                  {course}
                 </MenuItem>
               ))}
             </SelectInput>

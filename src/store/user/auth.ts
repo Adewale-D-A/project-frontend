@@ -13,6 +13,7 @@ export const userAuthentication = createSlice({
         matric_number: "",
         username: "",
         email: "",
+        courses: [] as string[],
         hardware_user_id: "",
         role: "",
       },
@@ -35,6 +36,7 @@ export const userAuthentication = createSlice({
         matric_number: "",
         username: "",
         email: "",
+        courses: [],
         hardware_user_id: "",
         role: "",
       };

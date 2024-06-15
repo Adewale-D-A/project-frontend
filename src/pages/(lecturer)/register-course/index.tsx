@@ -4,10 +4,11 @@ import SingleCSVUpload from "../../../components/drag_n_drop/single_csv_upload";
 import TextInput from "../../../components/inputs/text";
 import { ClickButtonMain } from "../../../components/buttons";
 import useAxios from "../../../services/base/axios/useAxios";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { openSnackbar } from "../../../store/app_functions/snackbar";
-import { Button } from "@mui/material";
+import { Button, MenuItem } from "@mui/material";
 import { Download } from "@mui/icons-material";
+import SelectInput from "../../../components/inputs/select";
 
 export default function CourseRegistration() {
   const axios = useAxios();
@@ -15,6 +16,7 @@ export default function CourseRegistration() {
   const [csvData, setCsvData] = useState<
     { matric_number: string; fullname: string }[]
   >([]);
+  const { user } = useAppSelector((state) => state?.userAuthentication?.value);
 
   const [courseCode, setCourseCode] = useState("");
   const [course, setCourse] = useState("");
@@ -29,10 +31,7 @@ export default function CourseRegistration() {
           course_code: courseCode,
           students: csvData,
         });
-        console.log({ response });
         const { data, message } = response?.data;
-        // const modeSet = data?.mode_id
-        // console.log({ response });
         dispatch(openSnackbar({ message: message, isError: false }));
         setCourseCode("");
         setCourse("");
@@ -71,6 +70,7 @@ export default function CourseRegistration() {
                 isRequired={true}
                 id="course-code"
               />
+
               <TextInput
                 inputType="text"
                 value={course}
@@ -80,6 +80,24 @@ export default function CourseRegistration() {
                 isRequired={true}
                 id="course-name"
               />
+
+              <SelectInput
+                label="Course"
+                value={course}
+                setValue={setCourse}
+                id="course-code"
+                isRequired={true}
+              >
+                {user?.courses.map((course) => (
+                  <MenuItem
+                    sx={{ color: "primary.main" }}
+                    key={course}
+                    value={course?.toLocaleLowerCase()}
+                  >
+                    {course}
+                  </MenuItem>
+                ))}
+              </SelectInput>
             </div>
 
             <div className=" mt-4">

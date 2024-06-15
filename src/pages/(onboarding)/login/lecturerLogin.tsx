@@ -30,7 +30,6 @@ export default function LecturerLogin() {
           password,
         });
         const { data, message } = response?.data;
-        console.log({ response });
         dispatch(
           updateAuthentication({
             access_token: data?.access_token,

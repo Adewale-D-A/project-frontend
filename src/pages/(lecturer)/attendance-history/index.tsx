@@ -1,27 +1,33 @@
 import { motion } from "framer-motion";
-import { SyntheticEvent, useCallback, useState } from "react";
+import { SyntheticEvent, useCallback, useEffect, useState } from "react";
 import useAxios from "../../../services/base/axios/useAxios";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { openSnackbar } from "../../../store/app_functions/snackbar";
-import { MenuItem } from "@mui/material";
+import { Button, MenuItem } from "@mui/material";
 import SelectInput from "../../../components/inputs/select";
 import TextInput from "../../../components/inputs/text";
 import { ClickButtonMain } from "../../../components/buttons";
 import NoResult from "../../../components/noResult";
 import { Link } from "react-router-dom";
 import formatDate, { formatTime } from "../../../utils/isoDateConverter";
+import { CSVLink } from "react-csv";
+import { Download } from "@mui/icons-material";
 
 export default function AttendanceHistory() {
   const axios = useAxios();
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state?.userAuthentication?.value);
+
   const [attendanceData, setAttendanceData] = useState<
     {
       id: number;
       user_table_id: number;
       matric_number: string;
       timestamp: string;
+      fullname: string;
     }[]
   >([]);
+
   const [course, setCourse] = useState("");
   const [startDateTime, setStartDateTime] = useState("");
   const [endDateTime, setEndDateTime] = useState("");
@@ -50,6 +56,7 @@ export default function AttendanceHistory() {
     },
     [course, startDateTime, endDateTime]
   );
+
   return (
     <motion.div
       initial={{ x: -100 }}
@@ -70,20 +77,16 @@ export default function AttendanceHistory() {
               id="course-code"
               isRequired={true}
             >
-              {[
-                {
-                  value: "ele360",
-                  label: "ELE 350",
-                },
-              ].map((option) => (
-                <MenuItem
-                  sx={{ color: "primary.main" }}
-                  key={option?.value}
-                  value={option?.value}
-                >
-                  {option?.label}
-                </MenuItem>
-              ))}
+              {user?.courses?.length > 0 &&
+                user?.courses?.map((course) => (
+                  <MenuItem
+                    sx={{ color: "primary.main" }}
+                    key={course}
+                    value={course?.toLocaleLowerCase()}
+                  >
+                    {course}
+                  </MenuItem>
+                ))}
             </SelectInput>
             <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className=" flex flex-col">
@@ -119,12 +122,43 @@ export default function AttendanceHistory() {
             />
           </form>
           <div className=" p-4 w-full flex flex-col gap-5 shadow-lg rounded-lg overflow-x-auto">
+            <div className="w-full flex justify-end">
+              {/* <Button
+                component={CSVLink}
+                data={attendanceData}
+                variant="contained"
+                disabled={attendanceData?.length < 1}
+                endIcon={<Download />}
+              >
+                Download Attendance
+              </Button> */}
+              {attendanceData?.length > 0 ? (
+                <CSVLink
+                  className=" rounded-md bg-primary-500/90 group text-white p-2 px-4 transition-all  hover:bg-primary-500/100 flex items-center gap-2"
+                  data={attendanceData}
+                >
+                  <span>Download Attendance</span>{" "}
+                  <span className=" group-hover:animate-bounce transition-all">
+                    <Download />
+                  </span>
+                </CSVLink>
+              ) : (
+                <Button
+                  variant="contained"
+                  disabled={true}
+                  endIcon={<Download />}
+                >
+                  Download Attendance
+                </Button>
+              )}
+            </div>
             {attendanceData?.length > 0 ? (
               <table className=" w-full py-10 border rounded-md">
                 <thead>
                   <tr className=" text-left bg-gray-200/15">
                     <th>S/N</th>
                     <th>Matric Number</th>
+                    <th>Fullname</th>
                     <th>Date/Time</th>
                   </tr>
                 </thead>
@@ -136,6 +170,11 @@ export default function AttendanceHistory() {
                         <td>
                           <div className="flex flex-col">
                             <span>{request?.matric_number}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="flex flex-col">
+                            <span>{request?.fullname}</span>
                           </div>
                         </td>
                         <td>

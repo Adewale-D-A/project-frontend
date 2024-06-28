@@ -4,10 +4,11 @@ import SingleCSVUpload from "../../../components/drag_n_drop/single_csv_upload";
 import TextInput from "../../../components/inputs/text";
 import { ClickButtonMain } from "../../../components/buttons";
 import useAxios from "../../../services/base/axios/useAxios";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { openSnackbar } from "../../../store/app_functions/snackbar";
-import { Button } from "@mui/material";
+import { Button, MenuItem } from "@mui/material";
 import { Download } from "@mui/icons-material";
+import SelectInput from "../../../components/inputs/select";
 
 export default function CourseRegistration() {
   const axios = useAxios();
@@ -15,9 +16,10 @@ export default function CourseRegistration() {
   const [csvData, setCsvData] = useState<
     { matric_number: string; fullname: string }[]
   >([]);
+  const { user } = useAppSelector((state) => state?.userAuthentication?.value);
 
   const [courseCode, setCourseCode] = useState("");
-  const [course, setCourse] = useState("");
+  const [courseName, setCourseName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleRegistration = useCallback(
@@ -29,13 +31,9 @@ export default function CourseRegistration() {
           course_code: courseCode,
           students: csvData,
         });
-        console.log({ response });
         const { data, message } = response?.data;
-        // const modeSet = data?.mode_id
-        // console.log({ response });
         dispatch(openSnackbar({ message: message, isError: false }));
         setCourseCode("");
-        setCourse("");
         setCsvData([]);
       } catch (error: any) {
         const errorMessage = error?.response?.data?.message;
@@ -62,19 +60,35 @@ export default function CourseRegistration() {
             className=" w-full flex flex-col gap-4 max-w-screen-xl px-5 md:px-10"
           >
             <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-5">
-              <TextInput
-                inputType="text"
+              <SelectInput
+                label="Course code"
                 value={courseCode}
                 setValue={setCourseCode}
-                placeholder="Course Code"
-                label="Course Code"
-                isRequired={true}
                 id="course-code"
-              />
+                isRequired={true}
+              >
+                <MenuItem
+                  sx={{ color: "primary.main" }}
+                  disabled={true}
+                  value={""}
+                >
+                  Please select a course
+                </MenuItem>
+                {user?.courses.map((course) => (
+                  <MenuItem
+                    sx={{ color: "primary.main" }}
+                    key={course}
+                    value={course?.toLocaleLowerCase()}
+                  >
+                    {course}
+                  </MenuItem>
+                ))}
+              </SelectInput>
+
               <TextInput
                 inputType="text"
-                value={course}
-                setValue={setCourse}
+                value={courseName}
+                setValue={setCourseName}
                 placeholder="Course Name"
                 label="Course Name"
                 isRequired={true}

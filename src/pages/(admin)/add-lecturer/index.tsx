@@ -36,8 +36,7 @@ export default function AddLecturer() {
           password,
           username,
         });
-        console.log({ response });
-        const { data, message } = response?.data;
+        const { message } = response?.data;
         // const modeSet = data?.mode_id
         // console.log({ response });
         dispatch(openSnackbar({ message: message, isError: false }));
@@ -140,8 +139,8 @@ export default function AddLecturer() {
               inputType="text"
               value={courses}
               setValue={setCourses}
-              placeholder="Seperate multiple courses my a comma"
-              label="Courses"
+              placeholder="Seperate multiple course codes my a comma e.g ELE560,ELE556"
+              label="Course codes"
               isRequired={true}
               id="text"
             />

@@ -1,3 +1,11 @@
+##### 06.28.2024
+
+> Lecturer's attendance history CVS downloadable file update
+
+##### 06.15.2024
+
+> Lecturer registered students filtering
+
 ##### 06.2.2024
 
 > Delete user by ID Ui development

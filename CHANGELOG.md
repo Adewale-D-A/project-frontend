@@ -1,5 +1,6 @@
 ##### 06.28.2024
 
+> CSV attendance download name update
 > Lecturer's attendance history CVS downloadable file update
 
 ##### 06.15.2024

@@ -136,6 +136,7 @@ export default function AttendanceHistory() {
                 <CSVLink
                   className=" rounded-md bg-primary-500/90 group text-white p-2 px-4 transition-all  hover:bg-primary-500/100 flex items-center gap-2"
                   data={attendanceData}
+                  filename={`${course}_attendance_on_${new Date()}_from_${startDateTime}_to_${endDateTime}.csv`}
                 >
                   <span>Download Attendance</span>{" "}
                   <span className=" group-hover:animate-bounce transition-all">

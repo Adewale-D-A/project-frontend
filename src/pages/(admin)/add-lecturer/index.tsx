@@ -36,8 +36,7 @@ export default function AddLecturer() {
           password,
           username,
         });
-        console.log({ response });
-        const { data, message } = response?.data;
+        const { message } = response?.data;
         // const modeSet = data?.mode_id
         // console.log({ response });
         dispatch(openSnackbar({ message: message, isError: false }));

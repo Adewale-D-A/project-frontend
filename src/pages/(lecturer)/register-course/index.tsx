@@ -19,7 +19,7 @@ export default function CourseRegistration() {
   const { user } = useAppSelector((state) => state?.userAuthentication?.value);
 
   const [courseCode, setCourseCode] = useState("");
-  const [course, setCourse] = useState("");
+  const [courseName, setCourseName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleRegistration = useCallback(
@@ -34,7 +34,6 @@ export default function CourseRegistration() {
         const { data, message } = response?.data;
         dispatch(openSnackbar({ message: message, isError: false }));
         setCourseCode("");
-        setCourse("");
         setCsvData([]);
       } catch (error: any) {
         const errorMessage = error?.response?.data?.message;
@@ -61,33 +60,20 @@ export default function CourseRegistration() {
             className=" w-full flex flex-col gap-4 max-w-screen-xl px-5 md:px-10"
           >
             <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-5">
-              <TextInput
-                inputType="text"
+              <SelectInput
+                label="Course code"
                 value={courseCode}
                 setValue={setCourseCode}
-                placeholder="Course Code"
-                label="Course Code"
-                isRequired={true}
-                id="course-code"
-              />
-
-              <TextInput
-                inputType="text"
-                value={course}
-                setValue={setCourse}
-                placeholder="Course Name"
-                label="Course Name"
-                isRequired={true}
-                id="course-name"
-              />
-
-              <SelectInput
-                label="Course"
-                value={course}
-                setValue={setCourse}
                 id="course-code"
                 isRequired={true}
               >
+                <MenuItem
+                  sx={{ color: "primary.main" }}
+                  disabled={true}
+                  value={""}
+                >
+                  Please select a course
+                </MenuItem>
                 {user?.courses.map((course) => (
                   <MenuItem
                     sx={{ color: "primary.main" }}
@@ -98,6 +84,16 @@ export default function CourseRegistration() {
                   </MenuItem>
                 ))}
               </SelectInput>
+
+              <TextInput
+                inputType="text"
+                value={courseName}
+                setValue={setCourseName}
+                placeholder="Course Name"
+                label="Course Name"
+                isRequired={true}
+                id="course-name"
+              />
             </div>
 
             <div className=" mt-4">

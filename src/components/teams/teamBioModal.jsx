@@ -16,22 +16,7 @@ const style = {
   pb: 3,
 };
 
-const TeamBioModal = ({
-  openModal,
-  handleModalClose,
-  teamMember,
-}: {
-  openModal: boolean;
-  handleModalClose: any;
-  teamMember: {
-    name: string;
-    position: string;
-    shortBio: string;
-    longBio: string;
-    imgSrc: string;
-    linkedIn: string;
-  };
-}) => {
+const TeamBioModal = ({ openModal, handleModalClose, teamMember }) => {
   return (
     <Modal
       open={openModal}
@@ -42,7 +27,6 @@ const TeamBioModal = ({
       <Box
         sx={{
           ...style,
-          // width: 400,
           "@media (max-width:600px)": {
             width: 350,
           },
@@ -102,3 +86,7 @@ const TeamBioModal = ({
 };
 
 export default TeamBioModal;
+
+// export default function TeamBio() {
+//   return <></>;
+// }

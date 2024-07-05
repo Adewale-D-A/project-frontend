@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import DeviceModel from "../../components/device_model/deviceModel";
+import { ArrowDownward } from "@mui/icons-material";
+import scrollToView from "../../utils/scrollIntoView";
+import { ClickButtonMain } from "../../components/buttons";
 
 export default function UserGuide() {
   return (
@@ -10,6 +13,19 @@ export default function UserGuide() {
       className="w-full flex flex-col items-center gap-16 py-28 md:py-36"
     >
       <section className=" w-full flex flex-col items-center">
+        <div className=" h-screen w-full">
+          <div className="fixed top-20 md:top-28 right-5">
+            <ClickButtonMain
+              type="button"
+              clickHandler={() =>
+                scrollToView({ scrollId: "lecturer-interface" })
+              }
+              label="User Guide"
+              endIcon={<ArrowDownward className=" animate-bounce" />}
+            />
+          </div>
+          <DeviceModel />
+        </div>
         <div className=" w-full flex flex-col gap-4 max-w-screen-xl px-5 md:px-10">
           <h1 className=" text-4xl font-bold">System Guide </h1>
           <div className="w-full max-w-xl flex flex-col gap-3">

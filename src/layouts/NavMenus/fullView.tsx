@@ -10,6 +10,7 @@ function FullMenuView({ navDataset }: { navDataset: nav_menu }) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const { user } = useAppSelector((state) => state?.userAuthentication?.value);
   //get side bar meny status from redux store
   const fullView = useAppSelector(
     (state) => state?.menuFunctions?.value?.fullMenuView
@@ -143,8 +144,8 @@ function FullMenuView({ navDataset }: { navDataset: nav_menu }) {
           </div>
           {fullView && (
             <div className=" ">
-              <h6 className=" font-semibold">Ade</h6>
-              <p className=" text-gray-500">ade@io.com</p>
+              <h6 className=" font-semibold">{user?.username}</h6>
+              <p className=" text-gray-500">{user?.email}</p>
             </div>
           )}
         </div>

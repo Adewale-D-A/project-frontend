@@ -1,3 +1,8 @@
+##### 07.05.2024
+
+> 3D Model import on User guide page
+> Dashboard side menu name update
+
 ##### 06.28.2024
 
 > CSV attendance download name update

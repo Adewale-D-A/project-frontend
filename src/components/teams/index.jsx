@@ -1,31 +1,11 @@
-"use client";
-
 import { useCallback, useState } from "react";
 import TeamBioModal from "./teamBioModal";
 import { Link } from "react-router-dom";
 import { ClickButtonMain } from "../buttons";
 
-const TeamBioCard = ({
-  item,
-}: {
-  item: {
-    name: string;
-    position: string;
-    shortBio: string;
-    longBio: string;
-    imgSrc: string;
-    linkedIn: string;
-  };
-}) => {
+const TeamBioCard = ({ item }) => {
   const [openModal, setOpenModal] = useState(false);
-  const [teamMember, setTeamMember] = useState<{
-    name: string;
-    position: string;
-    shortBio: string;
-    longBio: string;
-    imgSrc: string;
-    linkedIn: string;
-  }>({
+  const [teamMember, setTeamMember] = useState({
     name: "",
     position: "",
     shortBio: "",
@@ -38,20 +18,10 @@ const TeamBioCard = ({
     setOpenModal(false);
   }, []);
 
-  const openModalClickHandler = useCallback(
-    (item: {
-      name: string;
-      position: string;
-      shortBio: string;
-      longBio: string;
-      imgSrc: string;
-      linkedIn: string;
-    }) => {
-      setTeamMember(item);
-      setOpenModal(true);
-    },
-    []
-  );
+  const openModalClickHandler = useCallback((item) => {
+    setTeamMember(item);
+    setOpenModal(true);
+  }, []);
 
   return (
     <>
@@ -106,3 +76,6 @@ const TeamBioCard = ({
 };
 
 export default TeamBioCard;
+// export default function Teams() {
+//   return <></>;
+// }

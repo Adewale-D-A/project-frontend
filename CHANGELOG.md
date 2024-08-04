@@ -1,3 +1,7 @@
+##### 08.04.2024
+
+> Search student by matric number for removal
+
 ##### 07.05.2024
 
 > 3D Model import on User guide page

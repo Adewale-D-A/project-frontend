@@ -7,16 +7,23 @@ import useAxios from "../../../services/base/axios/useAxios";
 import { useAppDispatch } from "../../../store/hooks";
 import { openSnackbar } from "../../../store/app_functions/snackbar";
 import TextInput from "../../../components/inputs/text";
+import NoResult from "../../../components/noResult";
+import { student_users } from "../../../types/api/verificationHistory";
+import { Search } from "@mui/icons-material";
+import { ClickButtonSecondary } from "../../../components/buttons/secondary_click_button";
 
 export default function HardwareSettings() {
   const axios = useAxios();
   const dispatch = useAppDispatch();
   const [mode, setMode] = useState("");
   const [deleteId, setDeleteId] = useState("");
+  const [searchMatNo, setSearchMatNo] = useState("");
   const [purgeStatus, setPurgeStatus] = useState("0");
-  const [submittingMode, setSubmittingMode] = useState(false);
 
-  const [removeUserId, setRemoveUserId] = useState("");
+  const [submittingMode, setSubmittingMode] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+
+  const [dataset, setDataset] = useState<student_users>([]);
   const [isRemovingUser, setIsRemovingUser] = useState(false);
 
   const handleModeSubmit = useCallback(
@@ -52,13 +59,12 @@ export default function HardwareSettings() {
     [mode, purgeStatus, deleteId]
   );
 
-  const handleRemoveUserId = useCallback(
-    async (e: SyntheticEvent) => {
-      e.preventDefault();
+  const setUserToRemove = useCallback(
+    async ({ hardware_user_id }: { hardware_user_id: number }) => {
       setIsRemovingUser(true);
       try {
         const response = await axios.post("/admins/set-id-to-delete", {
-          userId: removeUserId,
+          userId: hardware_user_id,
         });
         const { data, message } = response?.data;
         dispatch(openSnackbar({ message: message, isError: false }));
@@ -66,10 +72,31 @@ export default function HardwareSettings() {
         const errorMessage = error?.response?.data?.message;
         dispatch(openSnackbar({ message: errorMessage, isError: true }));
       } finally {
-        setIsRemovingUser(true);
+        setIsRemovingUser(false);
       }
     },
-    [removeUserId]
+    []
+  );
+
+  const searchUserByMatricNumber = useCallback(
+    async (e: SyntheticEvent) => {
+      e.preventDefault();
+      setIsSearching(true);
+      try {
+        const response = await axios.get(
+          `/admins/search-by-matric-number?matric_number=${searchMatNo}`
+        );
+        const { data, message } = response?.data;
+        setDataset(data);
+        dispatch(openSnackbar({ message: message, isError: false }));
+      } catch (error: any) {
+        const errorMessage = error?.response?.data?.message;
+        dispatch(openSnackbar({ message: errorMessage, isError: true }));
+      } finally {
+        setIsSearching(false);
+      }
+    },
+    [searchMatNo]
   );
 
   return (
@@ -170,28 +197,81 @@ export default function HardwareSettings() {
               />
             </div>
           </form>
+        </div>
+      </section>
 
+      <section className=" w-full flex flex-col items-center">
+        <div className=" w-full flex flex-col gap-6 max-w-screen-xl px-5 md:px-10 shadow-lg  p-4">
           <form
-            onSubmit={handleRemoveUserId}
-            className=" w-full grid grid-cols-1 md:grid-cols-2 p-4 gap-5 rounded-md shadow-lg"
+            onSubmit={(e) => searchUserByMatricNumber(e)}
+            className=" flex items-center gap-7"
           >
-            <TextInput
-              inputType="number"
-              value={removeUserId}
-              setValue={setRemoveUserId}
-              placeholder="Remove this user with hardware ID"
-              label="Remove user"
-              isRequired={true}
-              id="remove user"
-            />
-            <div className=" flex items-center">
-              <ClickButtonMain
-                isLoading={isRemovingUser}
-                type="submit"
-                label="Set Id"
+            <div className=" w-full max-w-xs">
+              <TextInput
+                inputType="text"
+                value={searchMatNo}
+                setValue={setSearchMatNo}
+                placeholder="Search by matric number"
+                label="Search Matric Number"
+                isRequired={true}
+                id="search-matric-number"
               />
             </div>
+            <ClickButtonMain
+              isLoading={isSearching}
+              type="submit"
+              label="Search"
+              endIcon={<Search />}
+            />
           </form>
+          <div className=" w-full grid grid-cols-1 gap-5 rounded-md">
+            {dataset?.length > 0 ? (
+              <table className=" w-full py-10 border rounded-md">
+                <thead>
+                  <tr className=" text-left bg-gray-200/15 text-gray-500">
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Matric Number</th>
+                    <th>Registered Index</th>
+                    <th>Hardware ID</th>
+                  </tr>
+                </thead>
+                <tbody className="">
+                  {dataset.map((request, index) => {
+                    return (
+                      <tr key={request?.student_id} className=" border-b">
+                        <td className=" text-gray-500">{index + 1}</td>
+                        <td>
+                          <b>{`${request?.firstname} ${request?.lastname}`}</b>
+                        </td>
+                        <td>
+                          <b>{request?.matric_number}</b>
+                        </td>
+                        <td>{request?.registered_index}</td>
+                        <td>{request?.hardware_user_id}</td>
+                        <td>
+                          <ClickButtonSecondary
+                            label="Set to remove user"
+                            clickHandler={() =>
+                              setUserToRemove({
+                                hardware_user_id: request?.hardware_user_id,
+                              })
+                            }
+                            isLoading={isRemovingUser}
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            ) : (
+              <NoResult
+                title="No user found"
+                message="No user found in this in this search"
+              />
+            )}
+          </div>
         </div>
       </section>
     </motion.div>

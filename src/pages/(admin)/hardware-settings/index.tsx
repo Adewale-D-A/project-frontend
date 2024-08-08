@@ -35,11 +35,11 @@ export default function HardwareSettings() {
         response = await axios.post("/admins/set_mode", {
           mode_id: mode,
         });
-        if (mode === "3") {
-          response = await axios.post("/admins/set-id-to-delete", {
-            userId: deleteId,
-          });
-        }
+        // if (mode === "3") {
+        //   response = await axios.post("/admins/set-id-to-delete", {
+        //     userId: deleteId,
+        //   });
+        // }
         if (mode === "4") {
           response = await axios.post("/admins/set-purge-state", {
             reply: purgeStatus,
@@ -150,7 +150,7 @@ export default function HardwareSettings() {
                 </MenuItem>
               ))}
             </SelectInput>
-            {mode === "3" && (
+            {/* {mode === "3" && (
               <TextInput
                 inputType="number"
                 value={deleteId}
@@ -160,7 +160,7 @@ export default function HardwareSettings() {
                 isRequired={true}
                 id="delete-id"
               />
-            )}
+            )} */}
             {mode === "4" && (
               <SelectInput
                 label="Hardware Mode"
@@ -199,81 +199,82 @@ export default function HardwareSettings() {
           </form>
         </div>
       </section>
-
-      <section className=" w-full flex flex-col items-center">
-        <div className=" w-full flex flex-col gap-6 max-w-screen-xl px-5 md:px-10 shadow-lg  p-4">
-          <form
-            onSubmit={(e) => searchUserByMatricNumber(e)}
-            className=" flex items-center gap-7"
-          >
-            <div className=" w-full max-w-xs">
-              <TextInput
-                inputType="text"
-                value={searchMatNo}
-                setValue={setSearchMatNo}
-                placeholder="Search by matric number"
-                label="Search Matric Number"
-                isRequired={true}
-                id="search-matric-number"
+      {mode === "3" && (
+        <section className=" w-full flex flex-col items-center">
+          <div className=" w-full flex flex-col gap-6 max-w-screen-xl px-5 md:px-10 shadow-lg  p-4">
+            <form
+              onSubmit={(e) => searchUserByMatricNumber(e)}
+              className=" flex items-center gap-7"
+            >
+              <div className=" w-full max-w-xs">
+                <TextInput
+                  inputType="text"
+                  value={searchMatNo}
+                  setValue={setSearchMatNo}
+                  placeholder="Search by matric number"
+                  label="Search Matric Number"
+                  isRequired={true}
+                  id="search-matric-number"
+                />
+              </div>
+              <ClickButtonMain
+                isLoading={isSearching}
+                type="submit"
+                label="Search"
+                endIcon={<Search />}
               />
+            </form>
+            <div className=" w-full grid grid-cols-1 gap-5 rounded-md">
+              {dataset?.length > 0 ? (
+                <table className=" w-full py-10 border rounded-md">
+                  <thead>
+                    <tr className=" text-left bg-gray-200/15 text-gray-500">
+                      <th>S/N</th>
+                      <th>Name</th>
+                      <th>Matric Number</th>
+                      <th>Registered Index</th>
+                      <th>Hardware ID</th>
+                    </tr>
+                  </thead>
+                  <tbody className="">
+                    {dataset.map((request, index) => {
+                      return (
+                        <tr key={request?.student_id} className=" border-b">
+                          <td className=" text-gray-500">{index + 1}</td>
+                          <td>
+                            <b>{`${request?.firstname} ${request?.lastname}`}</b>
+                          </td>
+                          <td>
+                            <b>{request?.matric_number}</b>
+                          </td>
+                          <td>{request?.registered_index}</td>
+                          <td>{request?.hardware_user_id}</td>
+                          <td>
+                            <ClickButtonSecondary
+                              label="Set to remove user"
+                              clickHandler={() =>
+                                setUserToRemove({
+                                  hardware_user_id: request?.hardware_user_id,
+                                })
+                              }
+                              isLoading={isRemovingUser}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              ) : (
+                <NoResult
+                  title="No user found"
+                  message="No user found in this in this search"
+                />
+              )}
             </div>
-            <ClickButtonMain
-              isLoading={isSearching}
-              type="submit"
-              label="Search"
-              endIcon={<Search />}
-            />
-          </form>
-          <div className=" w-full grid grid-cols-1 gap-5 rounded-md">
-            {dataset?.length > 0 ? (
-              <table className=" w-full py-10 border rounded-md">
-                <thead>
-                  <tr className=" text-left bg-gray-200/15 text-gray-500">
-                    <th>S/N</th>
-                    <th>Name</th>
-                    <th>Matric Number</th>
-                    <th>Registered Index</th>
-                    <th>Hardware ID</th>
-                  </tr>
-                </thead>
-                <tbody className="">
-                  {dataset.map((request, index) => {
-                    return (
-                      <tr key={request?.student_id} className=" border-b">
-                        <td className=" text-gray-500">{index + 1}</td>
-                        <td>
-                          <b>{`${request?.firstname} ${request?.lastname}`}</b>
-                        </td>
-                        <td>
-                          <b>{request?.matric_number}</b>
-                        </td>
-                        <td>{request?.registered_index}</td>
-                        <td>{request?.hardware_user_id}</td>
-                        <td>
-                          <ClickButtonSecondary
-                            label="Set to remove user"
-                            clickHandler={() =>
-                              setUserToRemove({
-                                hardware_user_id: request?.hardware_user_id,
-                              })
-                            }
-                            isLoading={isRemovingUser}
-                          />
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            ) : (
-              <NoResult
-                title="No user found"
-                message="No user found in this in this search"
-              />
-            )}
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </motion.div>
   );
 }

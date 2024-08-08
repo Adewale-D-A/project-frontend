@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 export const primaryBtnStyle2 = {
   textTransform: "lowercase",
@@ -36,7 +37,8 @@ export default function LinkButtonMain({
 }: Props) {
   return (
     <Button
-      href={url}
+      component={Link}
+      to={url}
       variant="contained"
       type={type}
       sx={

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import LinkButtonMain from "../../../components/buttons/link_button_main";
 import { useAppSelector } from "../../../store/hooks";
+import { Link } from "react-router-dom";
 
 export default function LecturerDashboard() {
   const { user } = useAppSelector((state) => state?.userAuthentication?.value);
@@ -31,8 +32,8 @@ export default function LecturerDashboard() {
                   <p>{user?.email}</p>
                 </div>
                 <LinkButtonMain
-                  url="/lecturer-course-registration"
-                  label="register-course"
+                  url="/lecturer/course-registration"
+                  label="register course"
                 />
               </div>
             </div>

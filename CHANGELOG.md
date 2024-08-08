@@ -1,3 +1,12 @@
+##### 08.08.2024
+
+> Lecturer's analytics page development
+> Delete by ID screen logic redefinition
+
+##### 08.04.2024
+
+> Search student by matric number for removal
+
 ##### 07.05.2024
 
 > 3D Model import on User guide page

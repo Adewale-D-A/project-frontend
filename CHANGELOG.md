@@ -1,3 +1,7 @@
+##### 08.31.2024
+
+> Add timetable
+
 ##### 08.08.2024
 
 > Lecturer's analytics page development

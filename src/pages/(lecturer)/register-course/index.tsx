@@ -78,7 +78,7 @@ export default function CourseRegistration() {
                   <MenuItem
                     sx={{ color: "primary.main" }}
                     key={course}
-                    value={course?.toLocaleLowerCase()}
+                    value={course?.toLowerCase()}
                   >
                     {course}
                   </MenuItem>

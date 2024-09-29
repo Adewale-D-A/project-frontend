@@ -27,6 +27,7 @@ import RequireAuth from "./route_protectors/require-auth";
 import LecturerLogin from "./pages/(onboarding)/login/lecturerLogin";
 import AdminLogin from "./pages/(onboarding)/login/adminLogin";
 import AddAdmin from "./pages/(admin)/add-admin";
+import CourseTimetable from "./pages/(lecturer)/course-timetable";
 
 function App() {
   return (
@@ -62,6 +63,10 @@ function App() {
               <Route
                 path="/lecturer/course-registration"
                 element={<CourseRegistration />}
+              />
+              <Route
+                path="/lecturer/course-timetable"
+                element={<CourseTimetable />}
               />
             </Route>
             <Route element={<AdminRoutes />}>

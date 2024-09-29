@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import DeviceModel from "../../components/device_model/deviceModel";
-import { ArrowDownward } from "@mui/icons-material";
+import { ArrowDownward, Download } from "@mui/icons-material";
 import scrollToView from "../../utils/scrollIntoView";
 import { ClickButtonMain } from "../../components/buttons";
+import { Button } from "@mui/material";
+import EmbedYouTube from "../../components/youtube/embed";
 
 export default function UserGuide() {
   return (
@@ -36,8 +38,8 @@ export default function UserGuide() {
           </div>
         </div>
       </section>
-      <section className=" w-full flex flex-col items-center">
-        <div className="w-full max-w-screen-xl grid grid-cols-1 md:grid-cols-3 px-5 md:px-10">
+      <section className=" w-full flex flex-col items-center ">
+        <div className="w-full max-w-screen-xl grid grid-cols-1 gap-3 md:grid-cols-3 px-5 md:px-10">
           {[
             {
               id: "#lecturer-interface",
@@ -125,6 +127,19 @@ export default function UserGuide() {
             Get student attendance analytics, data records history and much more
           </h2>
           <p className=" text-secondary-500">...</p>
+
+          <div className=" w-fit">
+            <Button
+              variant="contained"
+              component="a"
+              href={"/documentation/Documentation_lecturer_copy.pdf"}
+              download
+              endIcon={<Download />}
+            >
+              Download lecturer documentation
+            </Button>
+          </div>
+          <EmbedYouTube start={178} end={273} />
         </div>
       </section>
       <section
@@ -139,6 +154,18 @@ export default function UserGuide() {
             Track your attendance records, get personal AI assitant
           </h2>
           <p className=" text-secondary-500">...</p>
+          <div className=" w-fit">
+            <Button
+              variant="contained"
+              component="a"
+              href={"/documentation/Documentation_students_copy.pdf"}
+              download
+              endIcon={<Download />}
+            >
+              Download student documentation
+            </Button>
+          </div>
+          <EmbedYouTube start={19} end={177} />
         </div>
       </section>
       <section
@@ -153,6 +180,18 @@ export default function UserGuide() {
             Manage hardware interactivity
           </h2>
           <p className=" text-secondary-500">...</p>
+          <div className=" w-fit">
+            <Button
+              variant="contained"
+              component="a"
+              href={"/documentation/Documentation_admin_copy.pdf"}
+              download
+              endIcon={<Download />}
+            >
+              Download admin documentation
+            </Button>
+          </div>
+          <EmbedYouTube start={1} end={278} />
         </div>
       </section>
     </motion.div>

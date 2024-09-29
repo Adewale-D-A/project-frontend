@@ -1,3 +1,7 @@
+##### 09.29.2024
+
+> Documentation ui updates with embeded YouTube links referencing
+
 ##### 08.31.2024
 
 > Add timetable

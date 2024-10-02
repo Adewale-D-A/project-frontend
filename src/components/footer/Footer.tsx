@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import LinkedInIcon from "../../assets/icons/linkedIn";
 
 const Footer = () => {
   return (
@@ -64,40 +65,22 @@ const Footer = () => {
           </div>
           <div className="mt-16 mb-5 flex flex-col gap-5 md:gap-0 md:flex-row justify-center md:justify-between text-sm">
             <p>
-              <Link to={"#"}>
-                Terms | Privacy | Cookie Policy | Cookie Setting
+              <Link
+                to={"https://my-portfolio-eight-pi-71.vercel.app/"}
+                target="_blank"
+              >
+                © 2024. AAD
               </Link>
             </p>
-            <div className="flex items-center gap-5">
-              <span>The University</span>
-              <div className="flex gap-4">
-                {[
-                  {
-                    icon: (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="h-6 w-6"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16 8a8 8 0 0 1-7.022 7.94l1.902-7.098a3 3 0 0 0 .05-1.492A3 3 0 0 0 10.237 6h5.511A8 8 0 0 1 16 8M0 8a8 8 0 0 0 7.927 8l1.426-5.321a3 3 0 0 1-.723.255 3 3 0 0 1-1.743-.147 3 3 0 0 1-1.043-.7L.633 4.876A8 8 0 0 0 0 8m5.004-.167L1.108 3.936A8.003 8.003 0 0 1 15.418 5H8.066a3 3 0 0 0-1.252.243 2.99 2.99 0 0 0-1.81 2.59M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"
-                        />
-                      </svg>
-                    ),
-                    url: "https://www.unilorin.edu.ng/",
-                  },
-                ].map((item) => {
-                  return (
-                    <Link to={item.url} key={item?.url} target="_blank">
-                      {item?.icon}
-                    </Link>
-                  );
-                })}
-              </div>
+            <div className=" flex items-center gap-3 mt-6">
+              <Link
+                to="https://www.linkedin.com/in/adewale-d-azeez/"
+                target="_blank"
+                rel="noreferrer"
+                className=" border rounded-full p-3 border-gray-600"
+              >
+                <LinkedInIcon />
+              </Link>
             </div>
           </div>
         </footer>

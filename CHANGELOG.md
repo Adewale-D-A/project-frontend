@@ -1,3 +1,7 @@
+##### 10.02.2024
+
+> Logo updates
+
 ##### 09.29.2024
 
 > Documentation ui updates with embeded YouTube links referencing

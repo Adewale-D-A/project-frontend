@@ -1,3 +1,7 @@
+##### 10.07.2024
+
+logo size reduction
+
 ##### 10.02.2024
 
 > Logo updates

@@ -26,12 +26,12 @@ const NavBar = () => {
     <nav className=" flex justify-center w-screen rounded-b-md fixed top-0 z-10 backdrop-bg-filter">
       {/* //desktop view  */}
       <div className="w-full hidden md:flex justify-between items-center max-w-screen-xl px-5 md:px-10">
-        <Link to="/" className="">
+        <Link to="/" className=" my-2">
           <img
             src={"/logo192.png"}
-            alt="university logo"
-            title="university logo"
-            className="w-24 h-auto"
+            alt="aad logo"
+            title="aad logo"
+            className="w-16 h-auto"
           />
         </Link>
         <div className="flex items-center gap-6">

@@ -1,3 +1,12 @@
+##### 11.24.2024
+
+> Logo updates
+> Youtube dynamic sizing
+
+##### 10.07.2024
+
+logo size reduction
+
 ##### 10.02.2024
 
 > Logo updates
